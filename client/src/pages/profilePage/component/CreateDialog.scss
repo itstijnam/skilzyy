@@ -1,0 +1,102 @@
+.CreateDialog{
+    // border: 2px solid red;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.BLR{
+    height: 35rem;
+    width: 24rem;
+}
+
+.container{
+    // border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.top{
+    // border: 2px solid red;
+    background-color: rgb(43, 43, 68);
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 1rem;
+
+    .image{
+        border: 2px solid red;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: 100%;
+        }
+    }
+}
+
+.mid{
+    width: 100%;
+
+    overflow: hidden;
+
+    img{
+        width: 100%;
+    }
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    // border: 2px solid blue;
+    box-shadow: 0px 0px 5px blue inset;
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 2rem 0rem  ;
+
+    .btop{
+        display: flex;
+        gap: 0.5rem;
+        .Upload{
+            background-color: skyblue;
+            border-radius: 0.5rem;
+        }
+    }
+    .Create{
+        background-color: skyblue;
+        border-radius: 0.5rem;
+        width: 70%;
+
+    }
+
+}
+
+.pageTitle{
+    display: flex;
+    gap: 1rem;
+
+    p{
+        cursor: pointer;
+    }
+    p:hover{
+        transition: 0.5s;
+        color: pink;
+    }
+}

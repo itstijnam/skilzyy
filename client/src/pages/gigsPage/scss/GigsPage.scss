@@ -1,0 +1,376 @@
+// GigsPage.scss
+@use "sass:color";
+
+// Color Variables
+$primary-color: #4361ee;
+$secondary-color: #00c853;
+$secondary-color: #115bbbca;
+$dark-color: #263238;
+$light-color: #f5f7fa;
+$text-color: #2b2d42;
+$highlight-color: #ff9100;
+$gradient: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+@mixin transition {
+  transition: all 0.3s ease;
+}
+
+.GigsPage {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: $light-color;
+  min-height: 100vh;
+}
+
+.GPHeader {
+  background: $gradient;
+  padding: 1rem 4rem;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+
+
+  @include box-shadow;
+
+  .GPleft {
+    @include flex-center;
+    gap: 1rem;
+
+    .GPCompLogo {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img{
+        width: 100%;
+        filter: brightness(0) invert(1);
+      }
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+  }
+
+  .GPRight {
+    @include flex-center;
+    gap: 2rem;
+
+    ol {
+      @include flex-center;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        cursor: pointer;
+        font-weight: 500;
+        @include transition;
+
+        &:hover {
+          color: $highlight-color;
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    .GPRUserInfo {
+      position: relative;
+      cursor: pointer;
+
+      .GPRUImage {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .GPRUserInfoBox {
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+        background: white;
+        border-radius: 0.5rem;
+        width: 12rem;
+        padding: 1rem 0;
+        @include box-shadow;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: 0.5rem 1.5rem;
+            color: $dark-color;
+            @include transition;
+
+            &:hover {
+              background: rgba($primary-color, 0.05);
+              color: $primary-color;
+            }
+          }
+        }
+      }
+
+      &:hover .GPRUserInfoBox {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.GigPageSearchBar {
+  padding: 1.5rem 10%;
+  background: white;
+  @include box-shadow;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .searchChoices {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+    .SC {
+      @include flex-center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      span {
+        font-weight: 500;
+        color: $text-color;
+      }
+
+      input[type="radio"] {
+        appearance: none;
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2px solid $primary-color;
+        border-radius: 50%;
+        @include transition;
+
+        &:checked {
+          background: $primary-color;
+          box-shadow: inset 0 0 0 3px white;
+        }
+      }
+    }
+  }
+
+  .searchInput {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      border-radius: 50px;
+      border: 1px solid #e0e0e0;
+      font-size: 1rem;
+      @include transition;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+      }
+    }
+
+    .searchImage {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.2rem;
+      height: 1.2rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.AllUsersGigs {
+  padding: 2rem 5%;
+  background: $light-color;
+}
+
+.gigContainers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+
+  .gigCard {
+    background: white;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    @include box-shadow;
+    @include transition;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .CardImage {
+      height: 200px;
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include transition;
+      }
+    }
+
+    .cardSubDetail {
+      padding: 1.2rem;
+
+      .cardHeading {
+        margin-bottom: 1rem;
+
+        p {
+          font-weight: 600;
+          color: $dark-color;
+          margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+
+      .cardUserInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .userName {
+          font-weight: 500;
+          color: $text-color;
+        }
+
+        .starIcon {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+
+          img {
+            width: 1rem;
+            height: 1rem;
+          }
+
+          span {
+            font-weight: 600;
+            color: $highlight-color;
+          }
+        }
+
+        .userlocation {
+          font-size: 0.9rem;
+          color: lighten($text-color, 20%);
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Styles
+@media (max-width: 1200px) {
+  .GigPageSearchBar {
+    padding: 1.5rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .GPHeader {
+    padding: 1rem 2rem !important;
+
+    .GPleft p {
+      display: none !important;
+    }
+  }
+
+  .GigPageSearchBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+
+    .searchInput {
+      max-width: 100%;
+    }
+  }
+
+  .gigContainers {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .GPHeader {
+    padding: 1rem !important;
+
+    .GPRight {
+      gap: 1rem;
+
+      ol li {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .GigPageSearchBar {
+    padding: 1rem !important;
+
+    .searchChoices {
+      gap: 1rem;
+    }
+  }
+
+  .gigContainers {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,115 @@
+/* General Styles */
+.contact-us-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .contact-us-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .contact-us-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Contact Information Styles */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    color: #333;
+    min-width: 120px;
+  }
+  
+  .info-value {
+    color: #555;
+  }
+  
+  /* Go Back Button Styles */
+  .go-back-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-back-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .contact-us-container {
+      padding: 15px;
+    }
+  
+    .contact-us-container h1 {
+      font-size: 2rem;
+    }
+  
+    .contact-us-container p {
+      font-size: 1rem;
+    }
+  
+    .info-label {
+      min-width: 100px;
+      font-size: 0.9rem;
+    }
+  
+    .info-value {
+      font-size: 0.9rem;
+    }
+  
+    .go-back-btn {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-us-container h1 {
+      font-size: 1.8rem;
+    }
+  
+    .contact-us-container p {
+      font-size: 0.9rem;
+    }
+  
+    .info-label {
+      min-width: 80px;
+      font-size: 0.8rem;
+    }
+  
+    .info-value {
+      font-size: 0.8rem;
+    }
+  
+    .go-back-btn {
+      font-size: 0.8rem;
+    }
+  }

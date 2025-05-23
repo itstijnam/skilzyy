@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Macondo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Indie+Flower&family=Macondo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+  margin: 0;
+  top: 0;
+  font-family: sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+}
+
+body {
+  /* background-color: #393540; */
+  background-color: white;
+}
+
+button {
+  border: none;
+  background-color: #313033;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 1.5rem;
+  border-radius: 20px;
+  font-family: "Indie Flower", serif;
+  font-family: "sans-serif", serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bolder;
+  font-size: 1rem;
+  /* font-style: italic; */
+  cursor: pointer;
+}
+
+ol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.backArrowButton {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.backArrowButton:hover {
+  transform: scale(1.6);
+}
+
+a {
+  cursor: pointer;
+  list-style: none;
+}
+
+a:hover {
+  color: #4361ee;
+}

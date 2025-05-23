@@ -1,0 +1,487 @@
+// Variables
+$primary-color: #3d5afe;
+$secondary-color: #00c853;
+$dark-color: #263238;
+$light-color: #f5f7fa;
+$white-color: white;
+$text-color: #455a64;
+$error-color: #ff5252;
+$success-color: #00c853;
+$highlight-color: red ;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-grid($min-width) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+  gap: 1rem;
+}
+
+// Base Styles
+.ProfilePage {
+  background-color: $light-color;
+  color: $dark-color;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 2rem;
+
+  &.notProfilePage {
+    @include flex-center(column);
+    height: 100vh;
+    
+    p {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: orangered;
+      text-align: center;
+      
+      span {
+        font-size: 1.2rem;
+        font-weight: 200;
+        color: $dark-color;
+        display: block;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+
+// Header Styles
+.profileHeader {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $white-color;
+  box-shadow: $box-shadow;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .userName {
+    font-size: 1.2rem;
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .userServicesHeading {
+    display: none; // Hidden on mobile
+  }
+
+  .userReport {
+    display: flex;
+    gap: 0.5rem;
+
+    div{
+        display: flex;
+        gap: 0.4rem;
+        button {
+          background-color: $primary-color;
+          color: $white-color;
+          border: none;
+          padding: 0.5rem;
+          border-radius: $border-radius;
+          cursor: pointer;
+          @include flex-center;
+        }
+    }
+  }
+}
+
+// Main Content Styles
+.profileBackground {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .userInfoGround {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .userInfoDetail {
+      background-color: $white-color;
+      border-radius: $border-radius;
+      padding: 1rem;
+      box-shadow: $box-shadow;
+
+      .userName2 {
+        margin-bottom: 1rem;
+
+        .golImage {
+          @include flex-center(row);
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          p {
+            font-size: 1.5rem;
+            font-weight: 400;
+          }
+
+          img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid $primary-color;
+          }
+        }
+
+        span {
+          color: $text-color;
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+      }
+
+      .userReviews {
+        @include flex-center(row);
+        gap: 1rem;
+        margin: 1rem 0;
+        padding: 0.5rem;
+        background-color: rgba($primary-color, 0.1);
+        border-radius: $border-radius;
+
+        p {
+          font-weight: 400;
+        }
+
+        span {
+          color: $highlight-color;
+          font-weight: 400;
+        }
+      }
+
+      .btnForUser {
+        @include flex-center(row);
+        gap: 1rem;
+        margin: 1rem 0;
+        padding: 0rem 3rem;
+
+        button {
+          padding: 0.5rem 1rem;
+          border-radius: $border-radius;
+          border: none;
+          cursor: pointer;
+          font-weight: 400;
+          transition: all 0.2s ease;
+
+          &.Rbtn {
+            background-color: $primary-color;
+            color: $white-color;
+          }
+
+          &.Mbtn {
+            background-color: $dark-color;
+            color: $white-color;
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .rating-container {
+        @include flex-center(row);
+        gap: 0rem;
+        margin-bottom: 0.5rem;
+
+        .star {
+          color: #ccc;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: color 0.2s ease;
+
+          &.filled {
+            color: $highlight-color;
+          }
+        }
+      }
+
+      .userExpertise {
+        background-color: $primary-color;
+        color: $white-color;
+        padding: 1rem;
+        border-radius: $border-radius;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .userOwnLogo {
+          display: none; // Hidden on mobile
+        }
+
+        .userExpertiseRate {
+          p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+
+            span {
+              font-weight: 300;
+            }
+          }
+        }
+
+        .serviceOnIndicator {
+          display: inline-block;
+          width: 0.8rem;
+          height: 0.8rem;
+          border-radius: 50%;
+          margin-left: 0.5rem;
+        //   background-color: $success-color;
+        }
+      }
+    }
+
+    .userImageRight {
+      display: none; // Hidden on mobile
+    }
+  }
+
+  .userServices {
+    margin-top: 2rem;
+    @include responsive-grid(15rem);
+
+    .USBox1 {
+      position: relative;
+      height: 10rem;
+      border-radius: $border-radius;
+      overflow: hidden;
+      box-shadow: $box-shadow;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .userImge {
+        width: 100%;
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .servLittleDetail {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+
+        .servLitName {
+          color: $white-color;
+          font-weight: 400;
+          font-size: 1.1rem;
+        }
+
+        .servLitExp {
+          color: rgba($white-color, 0.9);
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+// Additional Components
+.create {
+  @include flex-center(row);
+  gap: 1rem;
+  margin: 1rem;
+  flex-wrap: wrap;
+
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: $border-radius;
+    border: none;
+    background-color: $primary-color;
+    color: $white-color;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.servicesBox {
+  @include responsive-grid(15rem);
+  padding: 1rem;
+
+  .serviceCard {
+    background-color: $white-color;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .serviceCardImg {
+      width: 100%;
+      height: 10rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .serviceDetail {
+      padding: 0.75rem;
+
+      .servicePrice {
+        font-weight: 400;
+        color: $primary-color;
+        margin-bottom: 0.25rem;
+      }
+
+      .service {
+        color: $text-color;
+        font-size: 0.9rem;
+      }
+    }
+
+    .deleteIcon {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: $error-color;
+      color: $white-color;
+      width: 1.5rem;
+      height: 1.5rem;
+      @include flex-center;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.showMessageIsGigDelete {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $success-color;
+  color: $white-color;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+  z-index: 100;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+
+// Tablet Styles
+@media (min-width: 768px) {
+  .profileHeader {
+    padding: 1rem 2rem;
+
+    .userServicesHeading {
+      display: block;
+      flex: 1;
+      padding: 0 1rem;
+
+      ol {
+        @include flex-center(row);
+        gap: 1rem;
+        list-style: none;
+
+        li {
+          font-size: 0.9rem;
+          color: $text-color;
+        }
+      }
+    }
+  }
+
+  .profileBackground {
+    .userInfoGround {
+      flex-direction: row;
+
+      .userInfoDetail {
+        flex: 2;
+
+        .userExpertise {
+          flex-direction: row;
+          align-items: center;
+
+          .userOwnLogo {
+            display: block;
+            width: 6rem;
+            height: 6rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-right: 1rem;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+
+      .userImageRight {
+        display: block;
+        flex: 1;
+        height: 20rem;
+        border-radius: $border-radius;
+        overflow: hidden;
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+// Desktop Styles
+@media (min-width: 1024px) {
+  .profileBackground {
+    .userInfoGround {
+      .userInfoDetail {
+        .userName2 {
+          .golImage {
+            p {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+
+      .userImageRight {
+        height: 25rem;
+      }
+    }
+  }
+}

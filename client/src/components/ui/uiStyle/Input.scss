@@ -1,0 +1,8 @@
+.Input {
+    line-height: 0.7rem;
+    padding: 0.4rem 1rem;
+}
+
+.Input:focus {
+    outline: none; /* Removing the default outline */
+}

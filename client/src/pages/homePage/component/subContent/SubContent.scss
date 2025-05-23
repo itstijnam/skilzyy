@@ -1,0 +1,195 @@
+$royal-blue-color: rgb(102, 102, 227);
+
+
+.subContentGround {
+    transform: translateY(0%);
+    background-color: #393540;
+    padding-bottom: 2rem;
+  }
+  
+  .SubContent {
+    height: auto; // make height flexible
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem 1rem;
+    gap: 1.5rem;
+    position: relative;
+    padding: 2rem 0;
+  
+    span {
+      color: white;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+  }
+  
+  .subContentCaraousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .subContentCaraousel {
+    width: 90%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  
+    .listCard {
+      cursor: pointer;
+      flex: 0 0 22rem;
+      scroll-snap-align: center;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      background: #2d2c31;
+  
+      .CardImage {
+        height: 14rem;
+        width: 100%;
+  
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 10px 10px 0 0;
+        }
+      }
+  
+      .CardDetails {
+        background-color: #3130336c;
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.7rem;
+        text-align: center;
+  
+        ul {
+          list-style: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          padding: 0;
+  
+          li {
+            padding: 0;
+            color: white;
+            // text-shadow: 0px 0px 8px red;
+            font-size: 1.4rem;
+            font-weight: 700;
+          }
+        }
+  
+        p {
+          font-size: 1.1rem;
+          color: white;
+          // text-decoration: underline;
+        }
+  
+        button {
+          border: none;
+          background-color: red;
+          color: white;
+          padding: 0.3rem 1.5rem;
+          border-radius: 20px;
+          font-family: "Indie Flower", serif;
+          font-weight: bolder;
+          font-size: 1rem;
+          font-style: italic;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+  
+        button:hover {
+          background-color: #202021;
+        }
+      }
+
+      &:hover{
+        box-shadow: 0px 0px 10px $royal-blue-color;
+      }
+    }
+  }
+  
+  .caraouselBtn {
+    background-color: skyblue;
+    background-color: white;
+    color: white;
+    color: black;
+    padding: 0.4rem 2rem;
+    font-size: 1.3rem;
+    // text-shadow: 1px 1px 2px black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .caraouselBtn:hover {
+    color: white;
+    text-shadow: 2px 2px 7px red;
+  }
+  
+  @media (max-width: 670px) {
+    .subContentGround {
+      transform: translateY(0%) !important;
+    }
+  
+    .SubContent {
+      margin: 0 0.5rem;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+  
+    .subContentCaraousel {
+      width: 100%;
+      gap: 1rem;
+      padding: 0 1rem 1rem 1rem;
+      flex-direction: row;
+    }
+  
+    .listCard {
+      flex: 0 0 85%;
+      min-width: 85%;
+      height: auto;
+  
+      .CardImage {
+        height: 12rem;
+      }
+  
+      .CardDetails {
+        padding: 1rem;
+  
+        ul li {
+          font-size: 1.2rem;
+
+        }
+  
+        p {
+          font-size: 1rem;
+        }
+  
+        button {
+          font-size: 0.9rem;
+          padding: 0.3rem 1rem;
+        }
+      }
+    }
+  
+    .caraouselBtn {
+      width: auto;
+      font-size: 1rem;
+      padding: 0.4rem 1.5rem;
+    }
+  }
+  

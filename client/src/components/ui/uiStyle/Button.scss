@@ -1,0 +1,23 @@
+
+.Button{
+    cursor: pointer;
+    border: 2px solid goldenrod;
+    background-color: transparent;
+    color: white;
+    border-radius: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.ButtonSolid{
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+    height: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}

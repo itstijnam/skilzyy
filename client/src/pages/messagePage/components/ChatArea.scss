@@ -1,0 +1,147 @@
+// ChatArea.scss
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  &__header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__back-button {
+    display: none;
+    margin-right: 0.5rem;
+    color: #3b82f6;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  &__contact-name {
+    font-weight: 600;
+  }
+
+  &__messages-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__messages-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+  }
+
+  &__message-wrapper {
+    width: 100%;
+    display: flex;
+    margin-bottom: 0.5rem;
+
+    &--sent {
+      justify-content: flex-end;
+    }
+
+    &--received {
+      justify-content: flex-start;
+    }
+  }
+
+  &__message {
+    max-width: 75%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+
+    .chat-area__message-wrapper--sent & {
+      background-color: #3b82f6;
+      color: #ffffff;
+    }
+
+    .chat-area__message-wrapper--received & {
+      background-color: #f3f4f6;
+    }
+  }
+
+  &__message-content {
+    word-wrap: break-word;
+  }
+
+  &__message-meta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    gap: 0.5rem;
+  }
+
+  &__message-time {
+    opacity: 0.8;
+  }
+
+  &__message-status {
+    font-size: 0.9rem;
+  }
+
+  &__input-container {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+
+  &__input-wrapper {
+    display: flex;
+  }
+
+  &__input {
+    flex: 1;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem 0 0 0.5rem;
+    padding: 0.75rem;
+    outline: none;
+
+    &:focus {
+      border-color: #3b82f6;
+    }
+  }
+
+  &__send-button {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+
+  &__loading,
+  &__error {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &__error {
+    color: #dc3545;
+  }
+}

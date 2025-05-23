@@ -1,0 +1,50 @@
+// MessagePage.scss
+.message-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+
+  &__content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__sidebar {
+    width: 33.33%;
+    border-right: 1px solid #e5e7eb;
+    overflow-y: auto;
+    
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__chat-area {
+    width: 66.67%;
+    display: flex;
+    flex-direction: column;
+    
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__empty-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #6b7280;
+  }
+}
+
+@media (max-width: 767px) {
+  .message-page {
+    &__sidebar,
+    &__chat-area {
+      width: 100%;
+    }
+  }
+}

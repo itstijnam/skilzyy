@@ -1,0 +1,59 @@
+@use 'sass:color';
+
+.contact-list {
+    background-color: #f3f4f6;
+    height: 100%;
+    overflow-y: auto;
+  
+    &__header {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+  
+    &__title {
+      font-weight: 600;
+    }
+  
+    &__items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    &__item {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: color.scale(#f3f4f6, $lightness: -5%);
+      }
+  
+      &--active {
+        background-color: color.scale(#3b82f6, $lightness: 40%);
+      }
+    }
+  
+    &__name {
+      font-weight: 500;
+    }
+  
+    &__last-message {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .contact-list__header{
+        display: flex;
+        gap: 1rem;
+
+        .contact-back{
+          cursor: pointer;
+          color: #3b82f6;
+          &:hover{
+            color: #133770;
+          }
+        }
+  }
