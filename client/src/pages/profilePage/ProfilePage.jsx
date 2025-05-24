@@ -154,9 +154,9 @@ function ProfilePage() {
                                         <p>{userProfile?.person_name}</p>
                                         <img src={userProfile?.profilePicture ? userProfile?.profilePicture : BlankImage } alt="" />
                                     </div>
-                                    <span>
+                                    <pre>
                                         {userProfile?.bio ? <p>{userProfile?.bio}</p> : `${userProfile?.person_name} didn't put bio...`}
-                                    </span>
+                                    </pre>
                                 </div>
                                 <div className="userReviews">
                                     <p>Reviews</p> <span>{userProfile?.averageRating} star</span>
