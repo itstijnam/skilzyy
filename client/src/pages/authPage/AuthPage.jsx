@@ -29,7 +29,6 @@ function AuthPage() {
         setCountry(response.data.country_name);
         setCountryCode(response.data.country_calling_code);
       } catch (error) {
-        console.error("Could not detect country:", error);
         // Fallback values if detection fails
         setCountry('India');
         setCountryCode('+91');

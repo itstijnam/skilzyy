@@ -84,7 +84,6 @@ function CreateDialog() {
             });
 
             if(res.data.success){
-                console.log(res.data.success);
                 setPrice('');
                 setService('');
                 setFile('')

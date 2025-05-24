@@ -106,7 +106,7 @@ function ChatArea({ contact, onCloseChat }) {
                     : 'chat-area__message-wrapper--received'
                 }`}
               >
-                  { console.log(msg) }
+                
                   <div className="chat-area__message">
                     <div className="chat-area__message-content">
                       {msg.content}

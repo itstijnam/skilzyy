@@ -60,13 +60,12 @@ function ProfilePage() {
                 // Update user profile or do something after successful rating
             }
         } catch (error) {
-            console.error("Error submitting rating", error);
+            
         }
     };
 
     const deleteHandler = async (gigId)=>{
         try {
-            console.log(gigId);
             const res = await axios.delete(`${baseUrl}/api/gig/delete/${gigId}`, {withCredentials: true})
             if(res.data.success){
                 setShowMessageIsGigDelete(res.data.message)
@@ -99,7 +98,6 @@ function ProfilePage() {
             }
         } catch (error) {
             setErrorMessage(error?.response?.data?.message || "Failed to start chat");
-            console.error("Chat error:", error);
         }
     };
 

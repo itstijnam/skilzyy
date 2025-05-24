@@ -24,8 +24,6 @@ function HomePage() {
   const { user } = useSelector((store) => store.auth);
   useGetAllFreelancers();
 
-  console.log(user);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -67,7 +65,7 @@ function HomePage() {
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
+      
     }
   };
 
