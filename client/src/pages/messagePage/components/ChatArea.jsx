@@ -67,8 +67,8 @@ function ChatArea({ contact, onCloseChat }) {
 
 
   const getContactName = (contact) => {
-    const otherUser = contact?.users?.find(u => u._id !== user._id);
-    return !otherUser || contact.users.length > 2 ? "Self" : otherUser.person_name;
+    const otherUser = contact?.users?.find(u => u?._id !== user?._id);
+    return !otherUser || contact?.users?.length > 2 ? "Self" : otherUser?.person_name;
   };
 
   const handleKeyPress = (e) => {
@@ -97,11 +97,11 @@ function ChatArea({ contact, onCloseChat }) {
         ) : (
           <div className="chat-area__messages-scrollable">
             <div className="chat-area__messages">
-              {messages.map((msg) => (
+              {messages?.map((msg) => (
                 <div
-                key={msg._id}
+                key={msg?._id}
                 className={`chat-area__message-wrapper ${
-                  msg?.sender?._id === user._id
+                  msg?.sender?._id === user?._id
                     ? 'chat-area__message-wrapper--sent'
                     : 'chat-area__message-wrapper--received'
                 }`}
@@ -109,7 +109,7 @@ function ChatArea({ contact, onCloseChat }) {
                 
                   <div className="chat-area__message">
                     <div className="chat-area__message-content">
-                      {msg.content}
+                      {msg?.content}
                     </div>
                     <div className="chat-area__message-meta">
                       <span className="chat-area__message-time">

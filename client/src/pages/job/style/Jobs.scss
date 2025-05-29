@@ -1,0 +1,206 @@
+// Jobs.scss
+$primary-color: #4361ee;
+$primary-hover: #3a56d4;
+$secondary-color: #4cc9f0;
+$dark-color: #212529;
+$light-color: #f8f9fa;
+$white-color: #ffffff;
+$text-color: #2b2d42;
+$highlight-color: #f72585;
+$border-radius: 0.8rem;
+$box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+$transition: all 0.3s ease;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin hover-effect {
+  transition: $transition;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.ads_section {
+  padding: 1rem 5%;
+}
+
+.job_container {
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: center;
+  
+  .job_box {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.job_card {
+  background: $white-color;
+  border-radius: $border-radius;
+  cursor: pointer;
+  @include flex-space-between;
+  padding: 1.5rem;
+  box-shadow: $box-shadow;
+  transition: $transition;
+  @include hover-effect;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  .job_desc {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+    .job_card_image {
+      @include flex-center;
+      overflow: hidden;
+      border-radius: $border-radius;
+      height: 6rem;
+      width: 6rem;
+      min-width: 6rem;
+      background: $light-color;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .job_post_heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        color: $dark-color;
+        font-weight: 700;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+        color: lighten($text-color, 20%);
+        font-weight: 500;
+      }
+
+      .job_card_quick_details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+
+        p {
+          margin: 0;
+          font-size: 0.85rem;
+          color: $text-color;
+          display: flex;
+          gap: 0.3rem;
+
+          span {
+            font-weight: 600;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .job_card_apply_action {
+    button {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: $border-radius;
+      background: $primary-color;
+      color: $white-color;
+      font-weight: 600;
+      cursor: pointer;
+      transition: $transition;
+      box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
+
+      &:hover {
+        background: $primary-hover;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .ads_section,
+  .job_container {
+    padding: 1rem 2%;
+  }
+
+  .job_card {
+    flex-direction: column;
+    // gap: 1.5rem;
+    padding: 0rem 0.2rem;
+    // border: 1px solid red;
+    font-size: 0.9rem;
+    // width: 11rem;
+    height: 8rem;
+    flex-direction: row;
+    // flex-wrap: wrap;
+    
+
+    .job_desc {
+    //   flex-direction: column;
+    //   text-align: center;
+      gap: 0.5rem;
+
+      .job_card_image {
+        height: 5rem;
+        width: 3rem;
+        // display: none;
+      }
+
+      .job_post_heading {
+        align-items: center;
+        div{
+            h2{ font-size: 1rem; }
+            h3{ font-size: 0.6rem; }
+        }
+
+        .job_card_quick_details {
+        //   justify-content: center;
+        //   display: none;
+        gap: 0rem;
+
+        .job_card_vacancy{
+            display: none;
+        }
+        .job_card_applied{
+            display: none;
+        }
+        }
+    }
+}
+}
+.job_card_apply_action{
+    button{
+        @include flex-center;
+        padding: 0.4rem 0.9rem !important;
+        font-size: 0.9rem;
+    }
+}
+}

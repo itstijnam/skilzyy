@@ -1,0 +1,33 @@
+
+$primary-color: #3d5afe;
+$primary-gray-color: gray ;
+$secondary-color: #00c853;
+$dark-color: #263238;
+$light-color: #f5f7fa;
+$white-color: white;
+$text-color: #455a64;
+$error-color: #ff5252;
+$success-color: #00c853;
+$highlight-color: red ;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+
+$black_color: #070707;
+$Eerie_Black: #28231C;
+$Rose_Ebony: #513B3C;
+$Wenge: #655356;
+$Light_Blue: #c1EEFF;
+
+
+@mixin flexcenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexspacecenter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

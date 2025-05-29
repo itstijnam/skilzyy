@@ -58,7 +58,7 @@ function AuthPage() {
       if (res.data.success) {
         setPopUpMessage(res.data.message);
         dispatch(setAuthUser(res.data.currentUser));
-        dispatch(setChats(res.data.currentUser.contacts))
+        // dispatch(setChats(res.data.currentUser.contacts))
         setUserName('');
         setPassword('');
         navigate('/');

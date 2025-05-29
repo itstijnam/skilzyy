@@ -12,12 +12,18 @@ export const createChat = async (req, res) => {
     }
 
     try {
-        // Get the current user's ID from the authenticated request
-        const currentUserId = req.id; // This comes from your isAuthenticated middleware
+        const currentUserId = req.id;
 
-        const currentUser = await User.findById(req.id);
+        // Check if contacted user exists
+        const contactedUser = await User.findById(userId);
+        if (!contactedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "Contacted user not found."
+            });
+        }
 
-        // Check if chat already exists between these two users
+        // Check for existing chat
         const existingChat = await Chat.findOne({
             kyaYeGroupChatH: false,
             users: { $all: [currentUserId, userId] }
@@ -37,15 +43,22 @@ export const createChat = async (req, res) => {
         const newChat = await Chat.create({
             chatName: "sender",
             kyaYeGroupChatH: false,
-            users: [currentUserId, userId] // Using the verified IDs
+            users: [currentUserId, userId]
         });
 
         const fullChat = await Chat.findById(newChat._id)
             .populate('users', '-password');
 
-        currentUser.contacts.push(newChat._id);
-        await currentUser.save();
+        // Add chat to both users' contacts using atomic $push
+        await User.updateOne(
+            { _id: currentUserId },
+            { $push: { contacts: newChat._id } }
+        );
 
+        await User.updateOne(
+            { _id: userId },
+            { $push: { contacts: newChat._id } }
+        );
 
         return res.status(201).json({
             success: true,
@@ -69,7 +82,8 @@ export const bringChats = async (req, res) => {
         // const currentUserId = req.user._id; // Use consistent auth ID
 
         // Find all chats where the current user is a participant
-        const chats = await Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+        // const chats = await Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+         const chats = await Chat.find({ users: req.id })
             .populate("users", "-password")
             .populate("latestMessage")
             .populate("groupAdmin", "-password")

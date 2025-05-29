@@ -1,0 +1,140 @@
+// Add.scss
+@import '../components/ui/Variables.scss';
+
+$primary-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+$hover-effect: all 0.3s ease;
+$card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+.ads_container {
+  width: 100%;
+  padding: 2rem 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: $light-color;
+}
+
+.top_ads {
+  @include flexcenter;
+  height: 25rem;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: $card-shadow;
+  transition: $hover-effect;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    // height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.mid_ads {
+  @include flexcenter;
+  gap: 2rem;
+  height: 20rem;
+  
+  .mid_left_ads, .mid_right_ads {
+    @include flexcenter;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: $card-shadow;
+    transition: $hover-effect;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    img {
+      width: 100%;
+    //   height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .mid_left_ads {
+    flex: 2;
+  }
+  
+  .mid_right_ads {
+    flex: 1;
+  }
+}
+
+.ads_links {
+  @include flexcenter;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $white-color;
+    background: $primary-gradient;
+    padding: 0.8rem 1.5rem;
+    border-radius: 2rem;
+    transition: $hover-effect;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+      background: linear-gradient(135deg, #3a56d4 0%, #2a088a 100%);
+    }
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .ads_container {
+    padding: 0rem;
+    gap: 1.5rem;
+  }
+  
+  .top_ads {
+    height: 15rem;
+  }
+  
+  .mid_ads {
+    flex-direction: column;
+    height: auto;
+    
+    .mid_left_ads, .mid_right_ads {
+      width: 100%;
+      height: 12rem;
+    }
+  }
+  
+  .ads_links {
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+    a {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+}

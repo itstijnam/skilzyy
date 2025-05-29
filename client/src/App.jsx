@@ -17,6 +17,9 @@ import ProjectCatalog from './pages/reference/clients/subpage/ProjectCatalog';
 import TalentMarket from './pages/reference/clients/subpage/TalentMarket';
 import FindWork from './pages/reference/guide/subpage/FindWork';
 import PrivacyPolicy from './pages/policy/privacypolicy/PrivacyPolicy';
+import LayoutJob from './pages/job/LayoutJob';
+import Jobs from './pages/job/subpage/Jobs';
+import JobCard from './pages/job/subpage/JobCard';
 
 const browserRouter = createBrowserRouter([
   {
@@ -84,6 +87,20 @@ const browserRouter = createBrowserRouter([
   {
     path: 'privacy-policy',
     element: <PrivacyPolicy/>
+  },
+  {
+    path: 'job',
+    element: <LayoutJob />,
+    children: [
+      {
+        path: '',
+        element: <Jobs/>
+      },
+      {
+        path: ':jobid',
+        element: <JobCard/>
+      }
+    ]
   }
 ])
 

@@ -11,4 +11,4 @@ router.route('/rename').put(isAuthenticated, changeGroupName);
 router.route('/groupadd').put(isAuthenticated, addMemberToGroup);
 router.route('/groupremove').put(isAuthenticated, removeMemberFromGroup);
 
-export default router;
+export default router; 

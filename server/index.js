@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 
-app.use('/api/freelance', userRouter);
+app.use('/api/freelance', userRouter); 
 app.use('/api/gig', gigRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);

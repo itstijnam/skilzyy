@@ -14,6 +14,8 @@ import { FaGem, FaRocket, FaChartLine } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { baseUrl } from "../../utils/baseUrl";
 import SKILZYY from '/homeComponent/SKILZYY.png'
+import { resetChats } from "../../../redux/chatSlice";
+import useGetAllChats from "../../../hooks/useGetAllChats";
 
 function HomePage() {
   const [message, setMessage] = useState("");
@@ -23,6 +25,8 @@ function HomePage() {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
   useGetAllFreelancers();
+
+  useGetAllChats();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +66,7 @@ function HomePage() {
       if (res.data.success) {
         dispatch(setAuthUser(null));
         setMessage(res.data.message);
+        dispatch(resetChats());
         navigate("/");
       }
     } catch (error) {

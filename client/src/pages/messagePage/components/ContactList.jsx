@@ -11,7 +11,7 @@ function ContactList({ contacts, selectedContact }) {
 
   const getContactName = (contact) => {
     // Find the other user in the chat (excluding current user)
-    const otherUser = contact?.users?.find(u => u._id !== user._id);
+    const otherUser = contact?.users?.find(u => u?._id !== user?._id);
     
     // If no other user found (chat with self) or if it's a group chat
     if (!otherUser || contact.users.length > 2) {

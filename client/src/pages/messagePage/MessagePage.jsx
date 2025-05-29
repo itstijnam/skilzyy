@@ -6,7 +6,7 @@ import ContactList from './components/ContactList';
 import ChatArea from './components/ChatArea';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedContact } from '../../../redux/chatSlice';
-
+ 
 function MessagePage() {
   const [isMobileView, setIsMobileView] = useState(false);
   const [showChat, setShowChat] = useState(false);

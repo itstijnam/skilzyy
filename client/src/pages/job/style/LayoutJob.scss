@@ -1,0 +1,195 @@
+// LayoutJob.scss
+$primary-color: #4361ee;
+$primary-hover: #3a56d4;
+$secondary-color: #4cc9f0;
+$dark-color: #212529;
+$light-color: #f8f9fa;
+$white-color: #ffffff;
+$text-color: #2b2d42;
+$highlight-color: #f72585;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+
+$gradient-primary: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+$gradient-accent: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin hover-effect {
+    transition: $transition;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.Layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $light-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.layout_header {
+    @include flex-space-between;
+    width: auto;
+    height: 70px;
+    padding: 0 5%;
+    background: $gradient-primary;
+    color: $white-color;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: $box-shadow;
+
+    .skilzyy_logo {
+        height: 40px;
+        cursor: pointer;
+        @include hover-effect;
+
+        img {
+            height: 100%;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    .skilzyy_navigation {
+        ul {
+            @include flex-center;
+            gap: 2rem;
+            list-style: none;
+            padding: 0;
+
+            li {
+                position: relative;
+                font-weight: 600;
+                cursor: pointer;
+                padding: 0.5rem 0;
+                @include hover-effect;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: $white-color;
+                    transition: $transition;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.job_navigation {
+    @include flex-center;
+    gap: 1.5rem;
+    padding: 1rem 5%;
+    background: $white-color;
+    box-shadow: $box-shadow;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Opera */
+    }
+
+    .job_nav_card {
+        @include flex-center;
+        flex-direction: column;
+        cursor: pointer;
+        border-radius: $border-radius;
+        background: $white-color;
+        color: $text-color;
+        min-width: 90px;
+        padding: 0.8rem 0.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: $transition;
+        flex-shrink: 0;
+
+        &:hover {
+            background: $primary-color;
+            color: $white-color;
+            box-shadow: 0 6px 16px rgba(67, 97, 238, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .job_class_icon {
+            @include flex-center;
+            height: 40px;
+            width: 40px;
+            margin-bottom: 0.5rem;
+            background: $light-color;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+        }
+    }
+}
+
+section {
+    flex: 1;
+    padding: 2rem 5%;
+    background-color: $light-color;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .layout_header {
+        padding: 0 3%;
+        height: 60px;
+        font-size: 0.9rem;
+        .skilzyy_navigation ul {
+            gap: 0.5rem;
+        }
+    }
+
+    .job_navigation {
+        padding: 0.8rem 2%;
+        gap: 0.8rem;
+        justify-content: flex-start;
+
+        .job_nav_card {
+            min-width: 80px;
+            padding: 0.6rem 0.3rem;
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    section {
+        padding: 1.5rem 2%;
+    }
+}

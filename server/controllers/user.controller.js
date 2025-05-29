@@ -99,38 +99,16 @@ export const login = async (req, res) => {
             });
         }
 
-        // Enhanced population of user data
-        let currentUser = await User.findOne({ username })
-            .populate('gigs')
-            .populate({
-                path: 'contacts',
-                select: '-__v',
-                populate: [
-                    { 
-                        path: 'users', 
-                        select: 'person_name username profilePicture isFreelancer',
-                        match: { _id: { $ne: null } } // Ensure valid users
-                    },
-                    { 
-                        path: 'latestMessage',
-                        select: 'content sender createdAt',
-                        populate: {
-                            path: 'sender',
-                            select: 'person_name username profilePicture'
-                        }
-                    }
-                ]
-            })
-            .lean(); // Convert to plain JavaScript object
-
-        if (!currentUser) {
+        // Find user without population first to verify credentials
+        const user = await User.findOne({ username });
+        if (!user) {
             return res.status(400).json({
                 success: false,
                 message: "Incorrect username or password"
             });
         }
 
-        const isPasswordMatch = await bcrypt.compare(password, currentUser.password);
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) {
             return res.status(400).json({
                 success: false,
@@ -138,10 +116,30 @@ export const login = async (req, res) => {
             });
         }
 
-        // Filter out any null references in contacts
-        currentUser.contacts = currentUser.contacts.filter(contact => 
-            contact && contact.users && contact.users.length > 0
-        );
+        // Now populate all necessary data after authentication
+        const currentUser = await User.findById(user._id)
+            .populate('gigs')
+            .lean();
+
+        // More robust contact filtering
+        currentUser.contacts = (currentUser.contacts || []).filter(contact => {
+            if (!contact) return false;
+            
+            // For individual chats
+            if (!contact.kyaYeGroupChatH) {
+                return contact.users && contact.users.length === 2;
+            }
+            
+            // For group chats
+            return true;
+        });
+
+        // Sort contacts by latest message timestamp
+        currentUser.contacts.sort((a, b) => {
+            const aTime = a.latestMessage?.createdAt || a.createdAt;
+            const bTime = b.latestMessage?.createdAt || b.createdAt;
+            return new Date(bTime) - new Date(aTime);
+        });
 
         const token = jwt.sign(
             { userId: currentUser._id },
@@ -149,7 +147,7 @@ export const login = async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        // Remove sensitive data before sending
+        // Remove sensitive data
         const { password: _, __v, ...userData } = currentUser;
 
         return res
@@ -173,6 +171,7 @@ export const login = async (req, res) => {
         });
     }
 };
+
 
 export const logout = async (_, res) => {
     try {
