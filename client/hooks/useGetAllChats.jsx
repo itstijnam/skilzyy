@@ -12,12 +12,12 @@ const useGetAllChats = () => {
             try {
                 const res = await axios.get(`${baseUrl}/api/chat`, { withCredentials: true });
                 if (res.data.success) {
-                    console.log(res.data.chats);
+                    // console.log(res.data.chats);
                     dispatch(setChats(res.data.chats));
 
                 }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         }
         fetAllChats();
