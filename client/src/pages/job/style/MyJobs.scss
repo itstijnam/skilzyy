@@ -1,0 +1,120 @@
+@use '../../../components/ui/uiStyle/Variable.scss' as *;
+
+.myjobs_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+//   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .posted_job_card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .posted_job_details {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $light-color;
+      padding-bottom: 1rem;
+
+      h2 {
+        font-size: 1.3rem;
+        color: $dark-color;
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+        color: $primary-color;
+        font-weight: 500;
+      }
+    }
+
+    .about_posted_job {
+      display: flex;
+      justify-content: space-between;
+
+      .abj {
+        p {
+          margin: 0.3rem 0;
+          font-size: 0.9rem;
+          color: $text-color;
+
+          span {
+            font-weight: 500;
+            color: $dark-color;
+          }
+        }
+      }
+
+      .status_posted_job {
+        text-align: right;
+
+        .badge {
+          padding: 0.3rem 0.6rem;
+          border-radius: 1rem;
+          font-size: 0.7rem;
+          font-weight: 600;
+          text-transform: uppercase;
+
+          &.active {
+            background: rgba($secondary-color, 0.2);
+            color: $secondary-color;
+          }
+
+          &.pending {
+            background: rgba($text-color, 0.2);
+            color: $text-color;
+          }
+        }
+
+        p {
+          margin-top: 0.5rem;
+          font-size: 0.8rem;
+          color: $text-color;
+
+          span {
+            display: inline-block;
+            background: $primary-color;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1.5rem;
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .myjobs_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .myjobs_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .myjobs_container {
+    grid-template-columns: 1fr;
+  }
+}

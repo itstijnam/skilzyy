@@ -35,7 +35,8 @@ $gradient-accent: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
 }
 
 .Layout {
-    min-height: 100vh;
+    // min-height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     background-color: $light-color;
