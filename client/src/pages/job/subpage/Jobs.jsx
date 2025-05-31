@@ -3,8 +3,14 @@ import React from 'react'
 import Add from './Add'
 import '../style/Jobs.scss'
 import wipro from '../components/images/wipro.jpg'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 function Jobs() {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     return (
         <div>
             <section className="ads_section">
@@ -13,7 +19,7 @@ function Jobs() {
             <div className="job_container">
                 <div className="job_box">
                     {/* Example Job Card 1 */}
-                    <div className="job_card">
+                    <div className="job_card" onClick={()=>navigate('/job/jobid')} >
                         <div className='job_desc'>
                             <div className="job_card_image">
                                 <img src={wipro} alt="Wipro" />

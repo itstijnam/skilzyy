@@ -22,6 +22,7 @@ import Jobs from './pages/job/subpage/Jobs';
 import JobCard from './pages/job/subpage/JobCard';
 import CreateJob from './pages/job/subpage/CreateJob';
 import MyJobs from './pages/job/subpage/MyJobs';
+import AppliedJobCard from './pages/job/subpage/AppliedJobCard';
 
 const browserRouter = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const browserRouter = createBrowserRouter([
       {
         path: 'my-jobs',
         element: <MyJobs/>
+      },
+      {
+        path: 'my-jobs/view',
+        element: <AppliedJobCard/>
       }
     ]
   }

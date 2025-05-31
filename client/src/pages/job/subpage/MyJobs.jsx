@@ -1,8 +1,12 @@
 import React from 'react'
 import '../style/MyJobs.scss'
+import { useNavigate } from 'react-router-dom';
 
 function MyJobs() {
   // Sample data - replace with your actual data
+
+  const navigate = useNavigate();
+
   const jobs = [
     {
       company: "TechCorp",
@@ -45,7 +49,7 @@ function MyJobs() {
   return (
     <div className='myjobs_container'>
       {jobs.map((job, index) => (
-        <div className="posted_job_card" key={index}>
+        <div className="posted_job_card" key={index} onClick={()=>navigate('/job/my-jobs/view')} >
           <div className="posted_job_details">
             <h2>{job.company}</h2>
             <h3>{job.position}</h3>
