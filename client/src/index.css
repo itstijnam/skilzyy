@@ -15,6 +15,7 @@ body {
   /* background-color: #393540; */
   background-color: white;
   overflow-x: hidden;
+  /* overflow: hidden; */
 }
 
 button {

@@ -6,12 +6,16 @@ import ContactList from './components/ContactList';
 import ChatArea from './components/ChatArea';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedContact } from '../../../redux/chatSlice';
+import useGetAllChats from '../../../hooks/useGetAllChats';
  
 function MessagePage() {
   const [isMobileView, setIsMobileView] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const {chats, selectedContact} = useSelector((store) => store.chat);
   const dispatch = useDispatch();
+  
+  useGetAllChats()
+
 
   useEffect(() => {
     const handleResize = () => {

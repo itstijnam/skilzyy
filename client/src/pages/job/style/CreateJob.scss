@@ -1,0 +1,318 @@
+@import '../components/ui/Variables.scss';
+
+.create-job-container {
+    //   width: 90%;
+    width: calc(100% - 2rem);
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0rem 1rem;
+    box-sizing: border-box;
+
+    .create-job-title {
+        text-align: center;
+        color: $dark-color;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+        font-weight: 600;
+    }
+
+    .jobcard {
+        @include flexspacecenter;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 2rem;
+        background: $white-color;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        gap: 2rem;
+        align-items: flex-start;
+        flex-direction: column;
+
+        @media (min-width: 992px) {
+            flex-direction: row;
+        }
+    }
+
+    .job_character {
+        width: 100%;
+
+        @media (min-width: 992px) {
+            width: 40%;
+        }
+
+        .job_char {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-direction: column;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+
+                .create-job-container {
+                    // width: calc(100% - 25%) !important;
+                    // width: 70%;
+                }
+
+            }
+
+            .job_card_image {
+                @include flexcenter;
+                height: 5rem;
+                width: 5rem;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 3px dashed $primary-color;
+                position: relative;
+
+                .image-upload-placeholder {
+                    @include flexcenter;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    color: $text-color;
+                    overflow: hidden;
+                    cursor: pointer;
+
+                    input[type="file"] {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .job_position {
+                width: 60%;
+                text-align: center;
+
+                @media (min-width: 768px) {
+                    text-align: left;
+                }
+
+                h2,
+                h4 {
+                    margin: 0.5rem 0;
+                }
+
+                input {
+                    width: calc(100% - 8%);
+                    padding: 0.5rem;
+                    border: 1px solid $light-color;
+                    border-radius: 0.3rem;
+                    font-size: 1rem;
+                    transition: $transition;
+
+                    &:focus {
+                        border-color: $primary-color;
+                        outline: none;
+                        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+                    }
+                }
+
+                .company_name {
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                }
+
+                .post_position {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .about_job {
+            margin-top: 2rem;
+
+            .heading {
+                color: $dark-color;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .about_text_area {
+                width: 100%;
+                padding: 1rem;
+                box-sizing: border-box;
+                border: 1px solid $light-color;
+                border-radius: $border-radius;
+                min-height: 150px;
+                resize: vertical;
+                font-family: inherit;
+                transition: $transition;
+
+                &:focus {
+                    border-color: $primary-color;
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+                }
+            }
+        }
+    }
+
+    .job_description_container {
+        width: 100%;
+
+        @media (min-width: 992px) {
+            width: 55%;
+        }
+
+        .job_quickdetails {
+            background: rgba($light-color, 0.3);
+            padding: 1.5rem;
+            border-radius: $border-radius;
+            margin-bottom: 1.5rem;
+
+            .job_quick_right_top {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+
+                .form-field {
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        margin-bottom: 0.5rem;
+                        color: $dark-color;
+                        font-weight: 500;
+                    }
+
+                    select,
+                    input {
+                        padding: 0.7rem;
+                        border: 1px solid $light-color;
+                        border-radius: 0.3rem;
+                        font-size: 0.9rem;
+                        transition: $transition;
+
+                        &:focus {
+                            border-color: $primary-color;
+                            outline: none;
+                            box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+                        }
+                    }
+
+                    input[type="number"] {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .job_action_btn {
+                text-align: center;
+
+                .submit-btn {
+                    padding: 0.8rem 2.5rem;
+                    background: $primary-color;
+                    color: white;
+                    //   height: 10rem;
+                    width: auto;
+                    border: none;
+                    border-radius: $border-radius;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: $transition;
+                    box-shadow: 0 4px 10px rgba($primary-color, 0.2);
+
+                    &:hover {
+                        background: rgba($primary-color, 10%);
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 15px rgba($primary-color, 0.3);
+                    }
+                }
+            }
+        }
+
+        .job_description {
+            h3 {
+                color: $dark-color;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .job_description_textarea {
+                width: calc(100% - 8%);
+                padding: 1rem;
+                border: 1px solid $light-color;
+                border-radius: $border-radius;
+                min-height: 200px;
+                resize: vertical;
+                font-family: inherit;
+                transition: $transition;
+
+                &:focus {
+                    border-color: $primary-color;
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+                }
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .create-job-container {
+        width: 95%;
+        padding: 0.5rem;
+
+        .jobcard {
+            padding: 1rem;
+        }
+
+        .job_quick_right_top {
+            grid-template-columns: 1fr !important;
+        }
+    }
+}
+
+.api-message {
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    max-width: 1200px;
+    text-align: center;
+
+    &.success {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+        border: 1px solid #28a745;
+    }
+
+    &.error {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+        border: 1px solid #dc3545;
+    }
+}
+
+.image-upload-placeholder {
+    position: relative;
+
+    .file-name {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: $text-color;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+}
+
+.submit-btn {
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}

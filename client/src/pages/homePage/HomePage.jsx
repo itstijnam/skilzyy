@@ -26,7 +26,6 @@ function HomePage() {
   const { user } = useSelector((store) => store.auth);
   useGetAllFreelancers();
 
-  useGetAllChats();
 
   useEffect(() => {
     const handleScroll = () => {

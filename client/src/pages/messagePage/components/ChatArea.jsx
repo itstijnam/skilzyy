@@ -4,6 +4,8 @@ import './ChatArea.scss';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../../../utils/baseUrl';
+import useGetAllChats from '../../../../hooks/useGetAllChats';
+import { setChats } from '../../../../redux/chatSlice';
 
 function ChatArea({ contact, onCloseChat }) {
   const [message, setMessage] = useState('');

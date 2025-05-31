@@ -3,9 +3,15 @@ import React from 'react'
 import './style/LayoutJob.scss'
 import SKILZYYNAME from '/homeComponent/SKILZYYNAME.png'
 import { getCapName } from '../../utils/getCapName'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 function LayoutJob() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const navList = [
     { text: 'Home', url: '' },
     { text: 'About', url: '' },
@@ -23,6 +29,12 @@ function LayoutJob() {
     { icon: '📱', jobTitle: 'Marketing', url: '' },
   ]
 
+  const navigateHandler = (text)=>{
+    if(text === 'Home'){
+      navigate('/')
+    }
+  }
+
   return (
     <div className='Layout'>
       <header className="layout_header">
@@ -32,7 +44,7 @@ function LayoutJob() {
         <nav className="skilzyy_navigation">
           <ul>
             {navList.map((n, i) => (
-              <li key={i}>{getCapName(n.text)}</li>
+              <li key={i}  onClick={()=>navigateHandler(n.text)} >{getCapName(n.text)}</li>
             ))}
           </ul>
         </nav>

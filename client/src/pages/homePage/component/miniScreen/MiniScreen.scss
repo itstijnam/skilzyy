@@ -96,7 +96,7 @@ $rating-color: #ffb703;
     p {
       font-size: 0.9rem;
       font-weight: 600;
-      color: darken($rating-color, 10%);
+      color: rgba($rating-color, 10%);
       margin: 0;
     }
   }

@@ -1,0 +1,237 @@
+@import '../components/ui/Variables.scss';
+
+.jobcard {
+  @include flexspacecenter;
+  width: 89%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: $white-color;
+//   border-radius: $border-radius;
+//   box-shadow: $box-shadow;
+  gap: 2rem;
+  align-items: flex-start;
+  transition: $transition;
+
+  &:hover {
+    // transform: translateY(-5px);
+    // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.job_character {
+  width: 40%;
+  padding: 1rem;
+
+  .job_char {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    .job_card_image {
+      @include flexcenter;
+      height: 10rem;
+      width: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid $primary-color;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .job_position {
+      h2 { 
+        font-size: 2.5rem; 
+        color: $dark-color;
+        margin-bottom: 0.5rem;
+      }
+      h4 { 
+        color: $primary-color; 
+        padding: 0.5rem;
+        background: rgba($primary-color, 0.1);
+        border-radius: 0.5rem;
+        display: inline-block;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  .about_job {
+    padding: 1rem;
+    // background: rgba($light-color, 0.5);
+    border-radius: $border-radius;
+    // width: 100%;
+
+    .heading {
+      color: $dark-color;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: $primary-color;
+      }
+    }
+
+    pre {
+      color: $text-color;
+      line-height: 1.6;
+      font-size: 1rem;
+      font-family: inherit;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+  }
+}
+
+.job_description_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .job_quickdetails {
+    @include flexspacecenter;
+    background: rgba($light-color, 0.5);
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .job_quick_right_top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      p {
+        margin: 0;
+        color: $text-color;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+
+        span {
+          color: $primary-color;
+          font-weight: 600;
+          margin-left: 0.3rem;
+        }
+      }
+    }
+
+    .job_action_btn {
+      button {
+        padding: 0.8rem 2rem;
+        background: $primary-color;
+        color: white;
+        border: none;
+        border-radius: $border-radius;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $transition;
+        box-shadow: 0 4px 10px rgba($primary-color, 0.2);
+
+        &:hover {
+          background: darken($primary-color, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 15px rgba($primary-color, 0.3);
+        }
+      }
+    }
+  }
+
+  .job_description {
+    background: rgba($light-color, 0.5);
+    padding: 1.5rem;
+    border-radius: $border-radius;
+
+    h3 {
+      color: $dark-color;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    pre {
+      color: $text-color;
+      line-height: 1.6;
+      font-family: inherit;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 992px) {
+  .jobcard {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .job_character, 
+  .job_description_container {
+    width: 100%;
+  }
+
+  .job_char {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem !important;
+
+    .job_position {
+      text-align: center;
+      
+      h2 {
+        font-size: 2rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .jobcard {
+    padding: 1rem;
+  }
+
+  .job_quick_right_top {
+    gap: 1rem !important;
+    
+    p {
+      font-size: 0.9rem !important;
+    }
+  }
+
+  .job_action_btn button {
+    width: 100%;
+    padding: 0.8rem !important;
+  }
+
+  .job_card_image {
+    height: 8rem !important;
+    width: 8rem !important;
+  }
+
+  pre {
+    font-size: 0.9rem !important;
+  }
+}

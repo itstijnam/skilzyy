@@ -1,5 +1,5 @@
 import React from 'react'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/homePage/HomePage';
 import AuthPage from './pages/authPage/AuthPage';
 import './App.scss'
@@ -20,31 +20,33 @@ import PrivacyPolicy from './pages/policy/privacypolicy/PrivacyPolicy';
 import LayoutJob from './pages/job/LayoutJob';
 import Jobs from './pages/job/subpage/Jobs';
 import JobCard from './pages/job/subpage/JobCard';
+import CreateJob from './pages/job/subpage/CreateJob';
+import MyJobs from './pages/job/subpage/MyJobs';
 
 const browserRouter = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage/>
+    element: <HomePage />
   },
   {
-    path:'/profile/:username',
-    element: <ProfilePage/>
+    path: '/profile/:username',
+    element: <ProfilePage />
   },
   {
-    path:'/editProfile',
-    element: <EditProfile/>
+    path: '/editProfile',
+    element: <EditProfile />
   },
   {
-    path:'/f',
-    element: <GigsPage/>
+    path: '/f',
+    element: <GigsPage />
   },
   {
-    path:'/f/gig',
-    element: <GigPage/>
+    path: '/f/gig',
+    element: <GigPage />
   },
   {
-    path:'/freelance/create',
-    element: <CreateDialog/>
+    path: '/freelance/create',
+    element: <CreateDialog />
   },
   {
     path: '/auth',
@@ -60,33 +62,33 @@ const browserRouter = createBrowserRouter([
   },
   {
     path: '/clients',
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: '',
-        element: <Hire/>
+        element: <Hire />
       },
       {
-        path:'/clients/enterprise',
-        element: <EnterpriseSolution/>
+        path: '/clients/enterprise',
+        element: <EnterpriseSolution />
       },
       {
         path: '/clients/projects',
-        element: <ProjectCatalog/>
+        element: <ProjectCatalog />
       },
       {
-        path : '/clients/talents',
-        element: <TalentMarket/>
+        path: '/clients/talents',
+        element: <TalentMarket />
       },
     ]
   },
   {
     path: '/howtofind',
-    element: <FindWork/>
+    element: <FindWork />
   },
   {
     path: 'privacy-policy',
-    element: <PrivacyPolicy/>
+    element: <PrivacyPolicy />
   },
   {
     path: 'job',
@@ -94,11 +96,19 @@ const browserRouter = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Jobs/>
+        element: <Jobs />
       },
       {
         path: ':jobid',
-        element: <JobCard/>
+        element: <JobCard />
+      },
+      {
+        path: 'create',
+        element: <CreateJob />
+      },
+      {
+        path: 'my-jobs',
+        element: <MyJobs/>
       }
     ]
   }

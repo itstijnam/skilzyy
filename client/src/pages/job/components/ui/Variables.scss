@@ -11,6 +11,8 @@ $success-color: #00c853;
 $highlight-color: red ;
 $border-radius: 0.5rem;
 $box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+$primary-hover: #3a56d4;
 
 
 $black_color: #070707;
@@ -30,4 +32,12 @@ $Light_Blue: #c1EEFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@mixin hover-effect {
+  transition: $transition;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
 }

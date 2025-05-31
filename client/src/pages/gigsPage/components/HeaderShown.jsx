@@ -56,8 +56,8 @@ function HeaderShown() {
               <div className='GPRUserInfoBox'>
                 <ul>
                   <li onClick={() => navigate(`/profile/${user?.username}`)} >MyAccount</li>
-                  {/* <li>Messages</li>
-                    <li>Settings</li> */}
+                  <li onClick={()=>navigate('/message')} >Messages</li>
+                    {/* <li>Settings</li> */}
                   <li onClick={logoutHandler} >Logout</li>
                 </ul>
               </div>
