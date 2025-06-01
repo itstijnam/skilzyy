@@ -15,7 +15,7 @@ function GovJobCard({ job }) {
       general: '200',
       female: '0',
       obc: '200',
-      scst: '0'
+      scst: '0',
     },
     age: {
       boysMin: '20',
