@@ -1,0 +1,265 @@
+@use '../components/ui/Variables.scss' as *;
+
+.gov-job-card {
+  background: $white-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  transition: $transition;
+  border: 1px solid rgba($primary-color, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .job-header {
+    padding: 1.5rem;
+    background: rgba($primary-color, 0.05);
+    text-align: center;
+    border-bottom: 1px solid rgba($primary-color, 0.1);
+
+    .job-image {
+      width: 100%;
+      max-height: 200px;
+      overflow: hidden;
+      border-radius: $border-radius;
+      margin-bottom: 1rem;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    h2 {
+      color: $primary-color;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.5rem;
+    }
+
+    .country {
+      color: $text-color;
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+
+  .job-dates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    background: $light-color;
+    border-bottom: 1px solid rgba($primary-gray-color, 0.1);
+
+    .date-item {
+      span {
+        display: block;
+        color: $text-color;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+      }
+
+      strong {
+        color: $dark-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .job-content {
+    padding: 1.5rem;
+
+    .quick-view, .description {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        color: $dark-color;
+        margin: 0 0 1rem 0;
+        font-size: 1.2rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 50px;
+          height: 2px;
+          background: $primary-color;
+        }
+      }
+
+      p {
+        color: $text-color;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .job-fees {
+    padding: 1.5rem;
+    background: $light-color;
+    border-top: 1px solid rgba($primary-gray-color, 0.1);
+    border-bottom: 1px solid rgba($primary-gray-color, 0.1);
+
+    h3 {
+      color: $dark-color;
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+    }
+
+    .fee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+
+      .fee-item {
+        background: $white-color;
+        padding: 0.8rem;
+        border-radius: $border-radius;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+        span {
+          display: block;
+          color: $text-color;
+          font-size: 0.9rem;
+          margin-bottom: 0.3rem;
+        }
+
+        strong {
+          color: $primary-color;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  .job-age {
+    padding: 1.5rem;
+
+    h3 {
+      color: $dark-color;
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+    }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+
+      .age-section {
+        background: $light-color;
+        padding: 1rem;
+        border-radius: $border-radius;
+
+        h4 {
+          color: $text-color;
+          margin: 0 0 1rem 0;
+          font-size: 1rem;
+          text-align: center;
+        }
+
+        .age-range {
+          display: flex;
+          justify-content: space-between;
+
+          span {
+            color: $dark-color;
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  .job-links {
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: rgba($primary-color, 0.03);
+    border-top: 1px solid rgba($primary-color, 0.1);
+
+    .link-item {
+      flex: 1;
+      min-width: 200px;
+
+      a {
+        display: block;
+        text-align: center;
+        padding: 0.8rem;
+        border-radius: $border-radius;
+        text-decoration: none;
+        font-weight: 600;
+        transition: $transition;
+
+        &.apply-btn {
+          background: $primary-color;
+          color: $white-color;
+
+          &:hover {
+            background: $primary-hover;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+          }
+        }
+
+        &.notification-link {
+          background: $white-color;
+          color: $primary-color;
+          border: 1px solid $primary-color;
+
+          &:hover {
+            background: rgba($primary-color, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary-color, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .gov-job-card {
+    .job-dates {
+      grid-template-columns: 1fr;
+    }
+
+    .fee-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    .age-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .job-links {
+      flex-direction: column;
+
+      .link-item {
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .gov-job-card {
+    .fee-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}

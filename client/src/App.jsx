@@ -22,7 +22,11 @@ import Jobs from './pages/job/subpage/Jobs';
 import JobCard from './pages/job/subpage/JobCard';
 import CreateJob from './pages/job/subpage/CreateJob';
 import MyJobs from './pages/job/subpage/MyJobs';
-import AppliedJobCard from './pages/job/subpage/AppliedJobCard';
+import ApplicantJobCard from './pages/job/subpage/ApplicantJobCard';
+import AppliedJob from './pages/job/subpage/AppliedJob';
+import CreateGovJob from './pages/job/subpage/CreateGovJob';
+import GovJobs from './pages/job/subpage/GovJobs';
+import GovJobCard from './pages/job/subpage/GovJobCard';
 
 const browserRouter = createBrowserRouter([
   {
@@ -113,7 +117,23 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'my-jobs/view',
-        element: <AppliedJobCard/>
+        element: <ApplicantJobCard/>
+      },
+      {
+        path: 'applied',
+        element: <AppliedJob/>
+      },
+      {
+        path: 'gov/create',
+        element: <CreateGovJob/>
+      },
+      {
+        path: 'gov',
+        element: <GovJobs/>
+      },
+      {
+        path: 'gov/:id',
+        element: <GovJobCard/>
       }
     ]
   }

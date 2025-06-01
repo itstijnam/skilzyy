@@ -1,11 +1,11 @@
 import React from 'react'
-import '../style/AppliedJobCard.scss'
+import '../style/ApplicantJobCard.scss'
 import { getCapName } from '../../../utils/getCapName'
 import { FaBriefcase, FaMapMarkerAlt, FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function AppliedJobCard() {
+function ApplicantJobCard() {
 
     const navigate = useNavigate();
     const {user} = useSelector(store => store.auth)
@@ -92,4 +92,4 @@ function AppliedJobCard() {
     )
 }
 
-export default AppliedJobCard
+export default ApplicantJobCard

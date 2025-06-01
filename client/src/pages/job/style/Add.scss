@@ -1,5 +1,5 @@
 // Add.scss
-@import '../components/ui/Variables.scss';
+@use '../components/ui/Variables.scss' as *;
 
 $primary-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
 $hover-effect: all 0.3s ease;

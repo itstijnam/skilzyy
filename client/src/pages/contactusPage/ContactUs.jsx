@@ -22,7 +22,7 @@ function ContactUs() {
 
         <div className="info-item">
           <span className="info-label">Email:</span>
-          <span className="info-value">getfreelancerconnect@gmail.com</span>
+          <span className="info-value">team@skilzyy.com</span>
         </div>
       </div>
 
