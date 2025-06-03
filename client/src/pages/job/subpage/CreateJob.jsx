@@ -14,7 +14,6 @@ function CreateJob() {
         compensation: '',
         job_type: '',
         job_description: '',
-        company_logo: null
     });
 
     const [compensationType, setCompensationType] = useState('');
@@ -62,12 +61,13 @@ function CreateJob() {
 
         try {
             const res = await axios.post(`${baseUrl}/api/job/create`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+                headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
             });
 
             if (res.data.success) {
                 setApiMessage({ text: res.data.message, type: 'success' });
+                console.log(res.data.message);
                 // Reset form after successful submission
                 setForm({
                     company_name: '',
@@ -79,7 +79,6 @@ function CreateJob() {
                     compensation: '',
                     job_type: '',
                     job_description: '',
-                    company_logo: null
                 });
                 setCompensationType('');
                 setCustomAmount('');
@@ -119,22 +118,10 @@ function CreateJob() {
             <form className='jobcard' onSubmit={submitHandler}>
                 <div className="job_character">
                     <div className="job_char">
-                        <div className="job_card_image">
+                        {/* <div className="job_card_image">
                             <div className="image-upload-placeholder">
-                                {/* <span>Upload Company Logo</span> */}
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    name="company_logo"
-                                    onChange={handleChange}
-                                />
-                                {form.company_logo && (
-                                    <span className="file-name">
-                                        {form.company_logo.name}
-                                    </span>
-                                )}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="job_position">
                             <h2>
                                 <input

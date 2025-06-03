@@ -2,6 +2,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authSlice from './authSlice.js'
 import freeLancerSlice from "./freeLancerSlice.js";
 import chatSlice from "./chatSlice.js";
+import jobSlice from "./jobSlice.js";
+import adminSlice from './adminSlice.js'
+
 import {
     persistReducer,
     FLUSH,
@@ -23,7 +26,9 @@ const rootReducer = combineReducers({
     // write code here...........
     auth: authSlice,
     freelancer: freeLancerSlice,
-    chat: chatSlice
+    chat: chatSlice,
+    job: jobSlice,
+    admin: adminSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

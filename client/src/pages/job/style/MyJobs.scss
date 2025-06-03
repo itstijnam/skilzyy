@@ -66,7 +66,7 @@
           font-weight: 600;
           text-transform: uppercase;
 
-          &.active {
+          &.live {
             background: rgba($secondary-color, 0.2);
             color: $secondary-color;
           }
@@ -74,6 +74,10 @@
           &.pending {
             background: rgba($text-color, 0.2);
             color: $text-color;
+          }
+          &.closed {
+            background: rgba(red, 0.2);
+            color: red;
           }
         }
 

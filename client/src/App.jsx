@@ -27,6 +27,7 @@ import AppliedJob from './pages/job/subpage/AppliedJob';
 import CreateGovJob from './pages/job/subpage/CreateGovJob';
 import GovJobs from './pages/job/subpage/GovJobs';
 import GovJobCard from './pages/job/subpage/GovJobCard';
+import AdminPanel from './pages/adminPage/AdminPanel';
 
 const browserRouter = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const browserRouter = createBrowserRouter([
   {
     path: '/profile/:username',
     element: <ProfilePage />
+  },
+  {
+    path: '/admin',
+    element: <AdminPanel/>
   },
   {
     path: '/editProfile',

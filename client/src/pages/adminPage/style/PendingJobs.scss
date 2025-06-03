@@ -1,0 +1,13 @@
+.admin_action_btn{
+
+    display: flex;
+    gap: 0.5rem;
+    .action_live{
+        background: rgba($color: green, $alpha: 0.3);
+        color: rgba($color: green, $alpha: 1);
+    }
+    .action_reject{
+        background: rgba($color: orangered, $alpha: 0.3);
+        color: rgba($color: orangered, $alpha: 1);
+    }
+}
