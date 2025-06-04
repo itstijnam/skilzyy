@@ -1,5 +1,5 @@
 // Jobs.jsx
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Add from './Add'
 import '../style/Jobs.scss'
 import wipro from '../components/images/wipro.jpg'
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import useGetAllLiveJobs from '../../../../hooks/jobsHooks/useGetAllLiveJobs'
 import { getCapName } from '../../../utils/getCapName'
 import formatToShortDate from '../../../utils/useFormatShortDate'
+import { setSelectedJob } from '../../../../redux/jobSlice'
+import axios from 'axios'
+import { baseUrl } from '../../../utils/baseUrl'
 
 function Jobs() {
 
@@ -16,21 +19,47 @@ function Jobs() {
     useGetAllLiveJobs();
 
     const { allUsersLiveJobs } = useSelector(store => store.admin);
+    const {user} = useSelector(store => store.auth)
+    const [apiMessage, setApiMessage] = useState('')
+    const jobAppliedHandler = async (id) => {
+        try {
+            const res = await axios.put(`${baseUrl}/api/job/apply/${id}`, { status: 'applied' }, {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            });
+            if (res.data.success) {
+                setApiMessage(res.data.message)
+            }
+        } catch (error) {
+
+        }
+    }
+
+ useEffect(() => {
+    const timeout = setTimeout(() => {
+      setApiMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
     return (
         <div>
             <section className="ads_section">
-                <Add />
+                {/* <Add /> */}
             </section>
             <div className="job_container">
                 <div className="job_box">
                     {/* Example Job Card 1 */}
 
                     {allUsersLiveJobs.map((job, idx) => (
-                        <div className="job_card" onClick={() => navigate('/job/jobid') } key={job._id} >
-                            <div className='job_desc'>
+                        <div className="job_card" key={job?._id} >
+                            <div className='job_desc' onClick={() => {
+                                navigate(`/job/${job?._id}`)
+                                dispatch(setSelectedJob(job))
+                            }}>
                                 <div className="job_card_image">
-                                    <img src={wipro} alt="Wipro" />
+                                    <img src={job?.created_by?.profilePicture} alt={job?.company_name} />
                                 </div>
                                 <div className='job_post_heading'>
                                     <div>
@@ -39,40 +68,21 @@ function Jobs() {
                                     </div>
                                     <div className="job_card_quick_details">
                                         <p>Experience: <span>{job?.experience_level} yr(s)</span></p>
-                                        <p>Date: <span> { formatToShortDate(job?.last_date)}</span></p>
+                                        <p>Date: <span> {formatToShortDate(job?.last_date)}</span></p>
                                         <p className='job_card_vacancy' >Vacancy: <span>{job?.vacancy}</span></p>
                                         {/* <p className='job_card_applied'>Applied: <span>{job?.applicants?.length}</span></p> */}
                                     </div>
                                 </div>
-                            </div>
+                            </div>{apiMessage && <small style={{color: 'green'}} >{apiMessage}</small> }
                             <div className="job_card_apply_action">
-                                <button>Apply</button>
+                                { job?.applicants?.find(obj => obj.user === user?._id) ?
+                                
+                                <button onClick={() => jobAppliedHandler(job?._id)} >Applied</button> :
+                                <button onClick={() => jobAppliedHandler(job?._id)} >Apply</button>
+                            }
                             </div>
                         </div>
                     ))}
-
-                    {/* <div className="job_card">
-                        <div className='job_desc'>
-                            <div className="job_card_image">
-                                <img src={wipro} alt="Wipro" />
-                            </div>
-                            <div className='job_post_heading'>
-                                <div>
-                                    <h2>Frontend Developer</h2>
-                                    <h3>Wipro Technologies</h3>
-                                </div>
-                                <div className="job_card_quick_details">
-                                    <p>Experience: <span>0-2 yrs</span></p>
-                                    <p>Date: <span>16/09/23</span></p>
-                                    <p>Vacancy: <span>10</span></p>
-                                    <p>Applied: <span>124</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="job_card_apply_action">
-                            <button>Apply Now</button>
-                        </div>
-                    </div> */}
 
                 </div>
             </div>

@@ -11,7 +11,6 @@ const useGetAllLiveJobs = () => {
             try {
                 const res = await axios.get(`${baseUrl}/api/job/get-all-live-jobs`, { withCredentials: true });
                 if (res.data.success) {
-                    console.log(res.data.jobs)
                     dispatch(setAllUsersLiveJobs(res.data.jobs));
                 }
             } catch (error) {

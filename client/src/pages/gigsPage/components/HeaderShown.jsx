@@ -44,7 +44,7 @@ function HeaderShown() {
           <li onClick={() => navigate('/f')} >Skilzyy</li>
           {/* <li>Jobs</li>
             <li>About</li> */}
-          <li onClick={() => navigate('/contact')} >Contact</li>
+          <li onClick={() => navigate('/job')} >Jobs</li>
         </ol>
         {user ? 
           <div className='GPRUserInfo' onClick={miniPopUpHandler}>

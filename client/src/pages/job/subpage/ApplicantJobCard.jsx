@@ -4,85 +4,78 @@ import { getCapName } from '../../../utils/getCapName'
 import { FaBriefcase, FaMapMarkerAlt, FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
+import { baseUrl } from '../../../utils/baseUrl'
 
 function ApplicantJobCard() {
 
     const navigate = useNavigate();
-    const {user} = useSelector(store => store.auth)
+    const {selcetedFromMyCreatedJob} = useSelector(store => store.job)
 
-    const jobData = {
-        company: "Tech Innovations Inc",
-        position: "Frontend Developer",
-        status: "Active",
-        applicants: 2,
-        candidates: [
-            {
-                profilePicture: '',
-                name: 'Manjit Singh',
-                location: 'Delhi',
-                status: 'pending' // 'hired', 'rejected', or 'pending'
-            },
-            {
-                profilePicture: '',
-                name: 'Priya Sharma',
-                location: 'Bangalore',
-                status: 'pending'
+    // console.log('setSelcetedFromMyCreatedJob', selcetedFromMyCreatedJob)
+
+    const handleAction = async (jobId, userId, status) => {
+        try {
+            const res = await axios.put(`${baseUrl}/api/job/update-applicants-status/${jobId}/${userId}`, {status}, {
+                headers: {'Content-Type': 'application/json'},
+                withCredentials: true
+            })
+
+            if(res.data.success){
+                console.log(res.data.message)
             }
-        ]
-    }
-
-    const handleAction = (action, candidateName) => {
-        console.log(`${action} ${candidateName}`);
-        // Add your API call or state management here
+        } catch (error) {
+            
+        }
     }
 
     return (
         <div className='AJC_container'>
             <div className="AJC_details">
                 <div className="_post_name">
-                    <h2><FaBriefcase /> {jobData.company}</h2>
-                    <h3>{getCapName(jobData.position)}</h3>
+                    <h2><FaBriefcase /> {selcetedFromMyCreatedJob?.company_name}</h2>
+                    <h3>{getCapName(selcetedFromMyCreatedJob?.post_name)}</h3>
                 </div>
-                <div className={`badge ${jobData.status.toLowerCase()}`}>
-                    {jobData.status}
+                <div className={`badge ${selcetedFromMyCreatedJob?.job_status.toLowerCase()}`}>
+                    {selcetedFromMyCreatedJob?.job_status}
                 </div>
                 <div className="AJC_applied_by">
-                    <FaUser /> {jobData.applicants}
+                    <FaUser /> {selcetedFromMyCreatedJob?.applicants?.length || 0}
                 </div>
             </div>
             
             <hr className="divider" />
             
             <div className="applied_by">
-                {jobData.candidates.map((candidate, index) => (
-                    <div className="candidated_card" key={index} onClick={()=>navigate(`/profile/${user?.username}`)}>
+                {selcetedFromMyCreatedJob?.applicants?.map((candidate, index) => (
+                    <div className="candidated_card" key={index} onClick={()=>navigate(`/profile/${candidate?.user?.username}`)}>
                         <div className="_candidate_profile">
                             <div className="candidate_image">
-                                {candidate.profilePicture ? (
-                                    <img src={candidate.profilePicture} alt={candidate.name} />
+                                {candidate?.user?.profilePicture ? (
+                                    <img src={candidate?.user?.profilePicture} alt={candidate.name} />
                                 ) : (
                                     <div className="avatar_placeholder">
-                                        {candidate.name.charAt(0)}
+                                        {candidate?.user?.person_name?.charAt(0)}
                                     </div>
                                 )}
                             </div>
                             <div className="candidate_info">
-                                <h1>{getCapName(candidate.name)}</h1>
-                                <h2><FaMapMarkerAlt /> {candidate.location}</h2>
+                                <h1>{getCapName(candidate?.user?.person_name)}</h1>
+                                <h2><FaMapMarkerAlt /> {candidate?.user?.state}</h2>
                             </div>
                         </div>
                         <div className="action_btn">
                             <button 
                                 className={`hire_btn ${candidate.status === 'hired' ? 'active' : ''}`}
-                                onClick={() => handleAction('hired', candidate.name)}
+                                onClick={() => handleAction(selcetedFromMyCreatedJob?._id, candidate?.user?._id, 'hired')}
                             >
-                                Hired
+                                Hire
                             </button>
                             <button 
                                 className={`reject_btn ${candidate.status === 'rejected' ? 'active' : ''}`}
-                                onClick={() => handleAction('rejected', candidate.name)}
+                                onClick={() => handleAction(selcetedFromMyCreatedJob?._id, candidate?.user?._id , 'rejected')}
                             >
-                                Rejected
+                                Reject
                             </button>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ const applicationStatusSchema = new mongoose.Schema({
 const jobSchema = new mongoose.Schema({
   company_name: { type: String, required: true },
   post_name: { type: String, required: true },
-  experience_level: { type: String },
+  experience_level: { type: String }, 
   posted_date: { type: Date, default: Date.now },
   last_date: { type: Date, required:true },
   vacancy: { type: Number, required:true },

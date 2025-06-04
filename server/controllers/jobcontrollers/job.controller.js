@@ -55,7 +55,8 @@ export const getAllCurentUsersCreatedJobs = async (req, res) => {
     try {
         const jobs = await Job.find({ created_by: req.id })
             .sort({ createdAt: -1 })
-            .populate('created_by', 'name email');
+            .populate('created_by', 'name email')
+            .populate('applicants.user', 'person_name username city state gender profilePicture');
 
         return res.status(200).json({
             success: true,
@@ -65,7 +66,8 @@ export const getAllCurentUsersCreatedJobs = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
- 
+
+
 export const getAllLiveJobs = async (req, res) => {
     try {
         const jobs = await Job.find({ job_status: 'live' })
@@ -163,7 +165,7 @@ export const updateStatusOfJob = async (req, res) => {
 
         // websiteOwner.username !== 'manjitsingh' not for production health/use use process.env.OwnerUsername/phNumber
 
-        if(websiteOwner.username !== 'manjitsingh' || websiteOwner.phnumber !== '8750881558'){
+        if (websiteOwner.username !== 'manjitsingh' || websiteOwner.phnumber !== '8750881558') {
             return res.status(404).json({
                 success: false,
                 message: `Only owner can access this feature`
@@ -220,7 +222,9 @@ export const deleteJob = async (req, res) => {
 export const applyForJob = async (req, res) => {
     try {
         const job = await Job.findById(req.params.jobId);
+        const { status } = req.body
 
+        console.log(status, req.params.jobId)
         if (!job) {
             return res.status(404).json({ error: "Job not found" });
         }
@@ -236,29 +240,53 @@ export const applyForJob = async (req, res) => {
 
         job.applicants.push({
             user: req.id,
-            status: 'applied',
+            status: status,
             employerAction: 'pending'
         });
 
         await job.save();
-        return res.status(200).json({ message: "Application submitted successfully" });
+        return res.status(200).json({ success: true, message: "Application submitted successfully" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-
-export const getUserApplications = async (req, res) => {
+export const getApplicationByUsers = async (req, res) => {
     try {
-        const jobs = await Job.find({ "applicants.user": req.id })
-            .populate('created_by', 'name email')
-            .sort({ createdAt: -1 });
+        if (!req.id) {
+            return res.status(400).json({
+                success: false,
+                message: 'User ID not provided'
+            });
+        }
+        const user = await User.findById(req.id);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+        const jobs = await Job.find({
+            "applicants.user": req.id
+        })
+        .populate('created_by', 'person_name profilePicture username')
+        .sort({ createdAt: -1 });
 
-        res.status(200).json(jobs);
+        return res.status(200).json({
+            success: true,
+            jobs,
+            message: jobs.length ? 'Jobs found' : 'No applications found'
+        });
+
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: error.message
+        });
     }
 };
+
 
 export const updateApplicationStatus = async (req, res) => {
     try {
@@ -297,7 +325,7 @@ export const updateApplicationStatus = async (req, res) => {
         job.applicants[applicantIndex].lastUpdated = Date.now();
         await job.save();
 
-        return res.status(200).json({ message: "Application status updated" });
+        return res.status(200).json({ success: true, message: `${status}` });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

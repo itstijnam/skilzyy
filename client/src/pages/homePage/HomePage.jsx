@@ -107,7 +107,7 @@ function HomePage() {
           <ul className="nav-links">
             <li className="active">Home</li>
             <li onClick={() => navigate('/f')} >Skilzyy</li>
-            <li onClick={()=>navigate('/contact')}>Contact Us</li>
+            <li onClick={() => navigate('/job')} >Jobs</li>
           </ul>
 
           {/* Dashboard link - always visible when logged in */}
