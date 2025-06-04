@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormatDate from '../../../utils/useFormatDate';
 import { setSelectedJob } from '../../../../redux/jobSlice';
-import CurrentUserAllApliedJobs from '../../../../hooks/jobsHooks/currentUserAllApliedJobs';
+import CurrentUserAllApliedJobs from './CurrentUserAllApliedJobs';
 
 function AppliedJob() {
     CurrentUserAllApliedJobs();

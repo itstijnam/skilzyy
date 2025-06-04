@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { baseUrl } from "../../src/utils/baseUrl";
-import { setAppliedJobsByMe } from "../../redux/jobSlice";
+import { baseUrl } from "../../../utils/baseUrl";
+import { setAppliedJobsByMe } from "../../../../redux/jobSlice";
 
 const CurrentUserAllApliedJobs = () => {
 
