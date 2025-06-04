@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../style/AppliedJob.scss';
 import { getCapName } from '../../../utils/getCapName';
 import { useNavigate } from 'react-router-dom';
-import CurrentUserAllApliedJobs from '../../../../hooks/jobsHooks/currentUserAllApliedJobs';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormatDate from '../../../utils/useFormatDate';
 import { setSelectedJob } from '../../../../redux/jobSlice';
+import CurrentUserAllApliedJobs from '../../../../hooks/jobsHooks/currentUserAllApliedJobs';
 
 function AppliedJob() {
     CurrentUserAllApliedJobs();
