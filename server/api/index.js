@@ -1,32 +1,31 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDB from "./utils/db.js";
+import connectDB from "../utils/db.js";
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 // routes
-import userRouter from "./routes/user.route.js"
-import gigRouter from "./routes/gig.route.js"
-import chatRouter from "./routes/chat.route.js"
-import messageRouter from "./routes/message.route.js"
-import jobRouter from "./routes/job.route.js"
+import userRouter from "../routes/user.route.js"
+import gigRouter from "../routes/gig.route.js"
+import chatRouter from "../routes/chat.route.js"
+import messageRouter from "../routes/message.route.js"
+import jobRouter from "../routes/job.route.js"
 
-// Fix __dirname for ES Module
-// const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.resolve();
-
-// Serve static files from the "uploads" folder
 
 // Load environment variables
 dotenv.config();
+connectDB()
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// __dirname workaround for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // CORS configuration
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 const corsOption = {
   origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
