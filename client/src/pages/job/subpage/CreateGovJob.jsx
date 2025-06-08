@@ -19,7 +19,7 @@ function CreateGovJob() {
       scst: ''
     },
     age: {
-      boysMin: '',
+      boysMin: '', 
       boysMax: '',
       girlsMin: '',
       girlsMax: ''
