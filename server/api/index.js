@@ -5,7 +5,6 @@ import connectDB from "./utils/db.js";
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import serverless from "serverless-http";
 
 // routes
 import userRouter from "./routes/user.route.js"
@@ -15,36 +14,42 @@ import messageRouter from "./routes/message.route.js"
 import jobRouter from "./routes/job.route.js"
 
 // Fix __dirname for ES Module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.resolve();
 
-// Load env
+// Serve static files from the "uploads" folder
+
+// Load environment variables
 dotenv.config();
 
-// DB connection
-await connectDB(); // ensure this completes before handling requests
-
-// Express app setup
 const app = express();
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const PORT = process.env.PORT || 3000;
 
+// CORS configuration
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const corsOption = {
   origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
   credentials: true,
 };
 
+// Middleware
 app.use(cors(corsOption));
-app.use(express.json());
+app.use(express.json()); 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+
 app.use('/api/freelance', userRouter); 
 app.use('/api/gig', gigRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/job', jobRouter);
 
-// Export the handler for Vercel
-export const handler = serverless(app);
+// app.use(express.static(path.join(__dirname, "/client/dist")));
+// app.get("*", (req,res)=>{
+//   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+// })
+
+export default app;
