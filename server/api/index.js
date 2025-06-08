@@ -27,7 +27,7 @@ const __dirname = path.dirname(__filename);
 // CORS configuration
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 const corsOption = {
-  origin: process.env.FRONTEND_URL,
+  origin: [process.env.FRONTEND_URL, "https://skilzyy.com"],
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
   credentials: true,
 };
