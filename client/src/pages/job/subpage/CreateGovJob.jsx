@@ -5,27 +5,23 @@ import { baseUrl } from '../../../utils/baseUrl';
 
 function CreateGovJob() {
   const [form, setForm] = useState({
-    post: '',
-    applicationStart: '',
-    lastDate: '',
-    examDate: '',
-    quickView: '',
-    description: '',
-    country: '',
-    fees: {
-      general: '',
-      female: '',
-      obc: '',
-      scst: ''
-    },
-    age: {
-      boysMin: '', 
-      boysMax: '',
-      girlsMin: '',
-      girlsMax: ''
-    },
-    applyLink: '',
-    notificationLink: '',
+    gov_job_post: '',
+    auth_country: '',
+    gov_job_appl_start: '',
+    gov_job_last_start: '',
+    gov_job_exam_date: '',
+    gov_quick_view: '',
+    gov_detailed_description: '',
+    gov_general_fee: '',
+    gov_female_fee: '',
+    gov_obc_fee: '',
+    gov_scst_fee: '',
+    gov_male_min_age: '',
+    gov_male_max_age: '',
+    gov_female_min_age: '',
+    gov_female_max_age: '',
+    gov_apply_link: '',
+    gov_notification_link: '',
     image: null
   });
 
@@ -37,16 +33,6 @@ function CreateGovJob() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleNestedChange = (parent, name, value) => {
-    setForm(prev => ({
-      ...prev,
-      [parent]: {
-        ...prev[parent],
-        [name]: value
-      }
-    }));
   };
 
   const handleImageChange = (e) => {
@@ -63,7 +49,7 @@ function CreateGovJob() {
       try {
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
-        setForm(prev => ({ ...prev, country: data.country_name }));
+        setForm(prev => ({ ...prev, auth_country: data.country_name }));
       } catch (err) {
         console.error('Failed to detect country:', err);
       }
@@ -80,20 +66,26 @@ function CreateGovJob() {
 
     try {
       const formData = new FormData();
-      formData.append('post', form.post);
-      formData.append('applicationStart', form.applicationStart);
-      formData.append('lastDate', form.lastDate);
-      formData.append('examDate', form.examDate);
-      formData.append('quickView', form.quickView);
-      formData.append('description', form.description);
-      formData.append('country', form.country);
-      formData.append('fees', JSON.stringify(form.fees));
-      formData.append('age', JSON.stringify(form.age));
-      formData.append('applyLink', form.applyLink);
-      formData.append('notificationLink', form.notificationLink);
+      formData.append('gov_job_post', form.gov_job_post);
+      formData.append('auth_country', form.auth_country);
+      formData.append('gov_job_appl_start', form.gov_job_appl_start);
+      formData.append('gov_job_last_start', form.gov_job_last_start);
+      formData.append('gov_job_exam_date', form.gov_job_exam_date);
+      formData.append('gov_quick_view', form.gov_quick_view);
+      formData.append('gov_detailed_description', form.gov_detailed_description);
+      formData.append('gov_general_fee', form.gov_general_fee);
+      formData.append('gov_female_fee', form.gov_female_fee);
+      formData.append('gov_obc_fee', form.gov_obc_fee);
+      formData.append('gov_scst_fee', form.gov_scst_fee);
+      formData.append('gov_male_min_age', form.gov_male_min_age);
+      formData.append('gov_male_max_age', form.gov_male_max_age);
+      formData.append('gov_female_min_age', form.gov_female_min_age);
+      formData.append('gov_female_max_age', form.gov_female_max_age);
+      formData.append('gov_apply_link', form.gov_apply_link);
+      formData.append('gov_notification_link', form.gov_notification_link);
       if (form.image) formData.append('image', form.image);
 
-      const res = await axios.post(`${baseUrl}/api/create`, formData, {
+      const res = await axios.post(`${baseUrl}/api/governmentjob/create`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true
       });
@@ -102,26 +94,23 @@ function CreateGovJob() {
         setSuccess('Job created successfully!');
         // Reset form
         setForm({
-          post: '',
-          applicationStart: '',
-          lastDate: '',
-          examDate: '',
-          quickView: '',
-          description: '',
-          fees: {
-            general: '',
-            female: '',
-            obc: '',
-            scst: ''
-          },
-          age: {
-            boysMin: '',
-            boysMax: '',
-            girlsMin: '',
-            girlsMax: ''
-          },
-          applyLink: '',
-          notificationLink: '',
+          gov_job_post: '',
+          auth_country: '',
+          gov_job_appl_start: '',
+          gov_job_last_start: '',
+          gov_job_exam_date: '',
+          gov_quick_view: '',
+          gov_detailed_description: '',
+          gov_general_fee: '',
+          gov_female_fee: '',
+          gov_obc_fee: '',
+          gov_scst_fee: '',
+          gov_male_min_age: '',
+          gov_male_max_age: '',
+          gov_female_min_age: '',
+          gov_female_max_age: '',
+          gov_apply_link: '',
+          gov_notification_link: '',
           image: null
         });
         setPreviewImage(null);
@@ -157,6 +146,7 @@ function CreateGovJob() {
             accept="image/*"
             onChange={handleImageChange}
             style={{ display: 'none' }}
+            required
           />
         </div>
 
@@ -166,18 +156,18 @@ function CreateGovJob() {
               <label>Post Title*</label>
               <input
                 type="text"
-                name="post"
-                value={form.post}
+                name="gov_job_post"
+                value={form.gov_job_post}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="top_sub_container">
-              <label>Country</label>
+              <label>Country*</label>
               <input
                 type="text"
-                name="country"
-                value={form.country}
+                name="auth_country"
+                value={form.auth_country}
                 onChange={handleChange}
                 disabled
                 required
@@ -190,8 +180,8 @@ function CreateGovJob() {
               <label>Application Start Date*</label>
               <input
                 type="date"
-                name="applicationStart"
-                value={form.applicationStart}
+                name="gov_job_appl_start"
+                value={form.gov_job_appl_start}
                 onChange={handleChange}
                 min={new Date().toISOString().split('T')[0]}
                 required
@@ -201,10 +191,10 @@ function CreateGovJob() {
               <label>Last Date to Apply*</label>
               <input
                 type="date"
-                name="lastDate"
-                value={form.lastDate}
+                name="gov_job_last_start"
+                value={form.gov_job_last_start}
                 onChange={handleChange}
-                min={form.applicationStart || new Date().toISOString().split('T')[0]}
+                min={form.gov_job_appl_start || new Date().toISOString().split('T')[0]}
                 required
               />
             </div>
@@ -212,10 +202,10 @@ function CreateGovJob() {
               <label>Exam Date</label>
               <input
                 type="date"
-                name="examDate"
-                value={form.examDate}
+                name="gov_job_exam_date"
+                value={form.gov_job_exam_date}
                 onChange={handleChange}
-                min={form.lastDate || new Date().toISOString().split('T')[0]}
+                min={form.gov_job_last_start || new Date().toISOString().split('T')[0]}
               />
             </div>
           </div>
@@ -223,8 +213,8 @@ function CreateGovJob() {
           <div className="field_container">
             <label>Quick View*</label>
             <textarea
-              name="quickView"
-              value={form.quickView}
+              name="gov_quick_view"
+              value={form.gov_quick_view}
               onChange={handleChange}
               required
             />
@@ -233,8 +223,8 @@ function CreateGovJob() {
           <div className="field_container">
             <label>Detailed Description*</label>
             <textarea
-              name="description"
-              value={form.description}
+              name="gov_detailed_description"
+              value={form.gov_detailed_description}
               onChange={handleChange}
               required
             />
@@ -242,13 +232,14 @@ function CreateGovJob() {
         </div>
 
         <div className="application_exam_fees">
-          <h3>Application Fees</h3>
+          <h3>Application Fees*</h3>
           <div className="cat_exam_fee">
             <label>General*</label>
             <input
               type="number"
-              value={form.fees.general}
-              onChange={(e) => handleNestedChange('fees', 'general', e.target.value)}
+              name="gov_general_fee"
+              value={form.gov_general_fee}
+              onChange={handleChange}
               required
             />
           </div>
@@ -256,8 +247,9 @@ function CreateGovJob() {
             <label>Female Candidate*</label>
             <input
               type="number"
-              value={form.fees.female}
-              onChange={(e) => handleNestedChange('fees', 'female', e.target.value)}
+              name="gov_female_fee"
+              value={form.gov_female_fee}
+              onChange={handleChange}
               required
             />
           </div>
@@ -265,8 +257,9 @@ function CreateGovJob() {
             <label>OBC*</label>
             <input
               type="number"
-              value={form.fees.obc}
-              onChange={(e) => handleNestedChange('fees', 'obc', e.target.value)}
+              name="gov_obc_fee"
+              value={form.gov_obc_fee}
+              onChange={handleChange}
               required
             />
           </div>
@@ -274,15 +267,16 @@ function CreateGovJob() {
             <label>SC/ST*</label>
             <input
               type="number"
-              value={form.fees.scst}
-              onChange={(e) => handleNestedChange('fees', 'scst', e.target.value)}
+              name="gov_scst_fee"
+              value={form.gov_scst_fee}
+              onChange={handleChange}
               required
             />
           </div>
         </div>
 
         <div className="gov_job_age">
-          <h3>Age Requirements</h3>
+          <h3>Age Requirements*</h3>
           <div className="age_section">
             <h4>For Male Candidates</h4>
             <div className="age_inputs">
@@ -290,8 +284,9 @@ function CreateGovJob() {
                 <label>Minimum Age*</label>
                 <input
                   type="number"
-                  value={form.age.boysMin}
-                  onChange={(e) => handleNestedChange('age', 'boysMin', e.target.value)}
+                  name="gov_male_min_age"
+                  value={form.gov_male_min_age}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -299,8 +294,9 @@ function CreateGovJob() {
                 <label>Maximum Age*</label>
                 <input
                   type="number"
-                  value={form.age.boysMax}
-                  onChange={(e) => handleNestedChange('age', 'boysMax', e.target.value)}
+                  name="gov_male_max_age"
+                  value={form.gov_male_max_age}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -313,8 +309,9 @@ function CreateGovJob() {
                 <label>Minimum Age*</label>
                 <input
                   type="number"
-                  value={form.age.girlsMin}
-                  onChange={(e) => handleNestedChange('age', 'girlsMin', e.target.value)}
+                  name="gov_female_min_age"
+                  value={form.gov_female_min_age}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -322,8 +319,9 @@ function CreateGovJob() {
                 <label>Maximum Age*</label>
                 <input
                   type="number"
-                  value={form.age.girlsMax}
-                  onChange={(e) => handleNestedChange('age', 'girlsMax', e.target.value)}
+                  name="gov_female_max_age"
+                  value={form.gov_female_max_age}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -336,9 +334,10 @@ function CreateGovJob() {
             <label>Apply Link*</label>
             <input
               type="url"
-              name="applyLink"
-              value={form.applyLink}
+              name="gov_apply_link"
+              value={form.gov_apply_link}
               onChange={handleChange}
+              pattern="https?://.+"
               required
             />
           </div>
@@ -346,9 +345,10 @@ function CreateGovJob() {
             <label>Notification Link*</label>
             <input
               type="url"
-              name="notificationLink"
-              value={form.notificationLink}
+              name="gov_notification_link"
+              value={form.gov_notification_link}
               onChange={handleChange}
+              pattern="https?://.+"
               required
             />
           </div>

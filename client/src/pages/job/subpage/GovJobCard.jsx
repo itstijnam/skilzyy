@@ -1,60 +1,38 @@
 import React from 'react'
 import '../style/GovJobCard.scss'
+import { useSelector } from 'react-redux'
+import useFormatDate from '../../../utils/useFormatDate';
 
-function GovJobCard({ job }) {
-  // Sample data structure that matches your form fields
-  const defaultJob = {
-    post: 'Indian Army Technical Graduate Course',
-    applicationStart: '2023-06-01',
-    lastDate: '2023-07-15',
-    examDate: '2023-08-20',
-    quickView: 'Technical Graduate Course (TGC) entry for Engineering graduates to join Indian Army as Permanent Commission Officers.',
-    description: 'The Indian Army is inviting applications from unmarried male Engineering graduates for 136th Technical Graduate Course (TGC). Selected candidates will undergo 1 year training at OTA Chennai before being commissioned as Lieutenants.',
-    country: 'India',
-    fees: {
-      general: '200',
-      female: '0',
-      obc: '200',
-      scst: '0',
-    },
-    age: {
-      boysMin: '20',
-      boysMax: '27',
-      girlsMin: '20',
-      girlsMax: '27'
-    },
-    applyLink: 'https://joinindianarmy.nic.in',
-    notificationLink: 'https://indianarmy.nic.in/notifications/tgc-136',
-    image: '/path/to/image.jpg'
-  }
+function GovJobCard() {
 
-  const jobData = job || defaultJob
+  const {selectedGovJob} = useSelector(store => store.gov)
+  console.log(selectedGovJob);
 
   return (
     <div className="gov-job-card">
       <div className="job-header">
-        {jobData.image && (
+        {selectedGovJob?.gov_job_image && (
           <div className="job-image">
-            <img src={jobData.image} alt={jobData.post} />
+            <img src={selectedGovJob?.gov_job_image} alt={selectedGovJob?.post} />
           </div>
         )}
-        <h2>{jobData.post}</h2>
-        <p className="country">{jobData.country}</p>
+        <h2>{selectedGovJob?.post}</h2>
+        <p className="country">{selectedGovJob?.auth_country}</p>
       </div>
 
       <div className="job-dates">
         <div className="date-item">
           <span>Application Start:</span>
-          <strong>{new Date(jobData.applicationStart).toLocaleDateString()}</strong>
+          <strong>{useFormatDate(selectedGovJob?.gov_job_appl_start)}</strong>
         </div>
         <div className="date-item">
           <span>Last Date:</span>
-          <strong>{new Date(jobData.lastDate).toLocaleDateString()}</strong>
+          <strong>{useFormatDate(selectedGovJob?.gov_job_last_start)}</strong>
         </div>
-        {jobData.examDate && (
+        {selectedGovJob?.gov_job_exam_date && (
           <div className="date-item">
             <span>Exam Date:</span>
-            <strong>{new Date(jobData.examDate).toLocaleDateString()}</strong>
+            <strong>{useFormatDate(selectedGovJob?.gov_job_exam_date)}</strong>
           </div>
         )}
       </div>
@@ -62,12 +40,12 @@ function GovJobCard({ job }) {
       <div className="job-content">
         <div className="quick-view">
           <h3>Quick View</h3>
-          <p>{jobData.quickView}</p>
+          <p>{selectedGovJob?.gov_quick_view}</p>
         </div>
 
         <div className="description">
           <h3>Detailed Description</h3>
-          <p>{jobData.description}</p>
+          <p>{selectedGovJob?.gov_detailed_description}</p>
         </div>
       </div>
 
@@ -76,19 +54,19 @@ function GovJobCard({ job }) {
         <div className="fee-grid">
           <div className="fee-item">
             <span>General:</span>
-            <strong>₹{jobData.fees.general}</strong>
+            <strong>₹{selectedGovJob?.gov_general_fee}</strong>
           </div>
           <div className="fee-item">
             <span>Female:</span>
-            <strong>₹{jobData.fees.female}</strong>
+            <strong>₹{selectedGovJob?.gov_female_fee}</strong>
           </div>
           <div className="fee-item">
             <span>OBC:</span>
-            <strong>₹{jobData.fees.obc}</strong>
+            <strong>₹{selectedGovJob?.gov_obc_fee}</strong>
           </div>
           <div className="fee-item">
             <span>SC/ST:</span>
-            <strong>₹{jobData.fees.scst}</strong>
+            <strong>₹{selectedGovJob?.gov_scst_fee}</strong>
           </div>
         </div>
       </div>
@@ -99,15 +77,15 @@ function GovJobCard({ job }) {
           <div className="age-section">
             <h4>Male Candidates</h4>
             <div className="age-range">
-              <span>Minimum: {jobData.age.boysMin} years</span>
-              <span>Maximum: {jobData.age.boysMax} years</span>
+              <span>Minimum: {selectedGovJob?.gov_male_min_age} years</span>
+              <span>Maximum: {selectedGovJob?.gov_male_max_age} years</span>
             </div>
           </div>
           <div className="age-section">
             <h4>Female Candidates</h4>
             <div className="age-range">
-              <span>Minimum: {jobData.age.girlsMin} years</span>
-              <span>Maximum: {jobData.age.girlsMax} years</span>
+              <span>Minimum: {selectedGovJob?.gov_female_min_age} years</span>
+              <span>Maximum: {selectedGovJob?.gov_female_max_age} years</span>
             </div>
           </div>
         </div>
@@ -115,12 +93,12 @@ function GovJobCard({ job }) {
 
       <div className="job-links">
         <div className="link-item">
-          <a href={jobData.applyLink} target="_blank" rel="noopener noreferrer" className="apply-btn">
+          <a href={selectedGovJob?.gov_apply_link} target="_blank" rel="noopener noreferrer" className="apply-btn">
             Apply Now
           </a>
         </div>
         <div className="link-item">
-          <a href={jobData.notificationLink} target="_blank" rel="noopener noreferrer" className="notification-link">
+          <a href={selectedGovJob?.gov_notification_link} target="_blank" rel="noopener noreferrer" className="notification-link">
             View Official Notification
           </a>
         </div>

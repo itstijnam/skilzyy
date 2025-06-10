@@ -3,7 +3,8 @@ import authSlice from './authSlice.js'
 import freeLancerSlice from "./freeLancerSlice.js";
 import chatSlice from "./chatSlice.js";
 import jobSlice from "./jobSlice.js";
-import adminSlice from './adminSlice.js'
+import adminSlice from './adminSlice.js';
+import govjobSlice from "./govJobSlice.js";
 
 import {
     persistReducer,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
     freelancer: freeLancerSlice,
     chat: chatSlice,
     job: jobSlice,
-    admin: adminSlice
+    admin: adminSlice,
+    gov: govjobSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

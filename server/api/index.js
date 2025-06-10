@@ -12,6 +12,7 @@ import gigRouter from "../routes/gig.route.js"
 import chatRouter from "../routes/chat.route.js"
 import messageRouter from "../routes/message.route.js"
 import jobRouter from "../routes/job.route.js"
+import governmentJobRouter from "../routes/govJob.route.js"
 
 
 // Load environment variables
@@ -55,6 +56,7 @@ app.use('/api/gig', gigRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/job', jobRouter);
+app.use('/api/governmentjob', governmentJobRouter);
 
 // app.use(express.static(path.join(__dirname, "/client/dist")));
 // app.get("*", (req,res)=>{

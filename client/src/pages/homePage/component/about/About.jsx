@@ -5,8 +5,8 @@ function About() {
         <div className='about'>
             <div className='box1'>
                 <div className="one">
-                    <p>WELCOME TO FREELANCE CONNECT</p>
-                    <h3>About <span>Freelance Connect</span></h3>
+                    <p>WELCOME TO SKILZYY</p>
+                    <h3>About <span>SKILZYY</span></h3>
                 </div>
                 <div className="two">
                     <p>
