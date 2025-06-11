@@ -9,16 +9,13 @@ const fetchAllGovJobs = () => {
 
     const detectCountry = async () => {
         try {
-            // Option 1: ip-api.com (supports JSONP or use their CORS-enabled endpoint)
-            const response = await fetch('http://ip-api.com/json/?fields=country');
-            const data = await response.json();
-            return data.country ;
-
+            const response = await axios.get('https://ipapi.co/json/');
+            return response.data.country_name;
         } catch (error) {
-            console.error("Country detection failed, using default (India)");
-            // return "India";
+            console.log(error)
         }
     };
+
     useEffect(() => {
         const fetchJobs = async () => {
             try {
@@ -38,8 +35,6 @@ const fetchAllGovJobs = () => {
         };
         fetchJobs();
     }, [dispatch]);
-
-    return null; // or return necessary data
 };
 
 export default fetchAllGovJobs;
