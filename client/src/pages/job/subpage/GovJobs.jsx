@@ -20,7 +20,7 @@ function GovJobs() {
       <div className="gov_jobs_list">
         {allgovjobs?.map((job) => (
           <div className="gov_job_card" key={job?._id} onClick={()=>{
-            navigate(`/job/gov/sdfasd`);
+            navigate(`/job/gov/view`);
             dispatch(setSelectedGovJob(job));
           }}>
             <div className="job_main_info">

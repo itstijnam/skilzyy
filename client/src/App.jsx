@@ -137,7 +137,7 @@ const browserRouter = createBrowserRouter([
         element: <GovJobs/>
       },
       {
-        path: 'gov/:id',
+        path: 'gov/view',
         element: <GovJobCard/>
       }
     ]
