@@ -135,7 +135,8 @@
     }
 
     .job_action_btn {
-      button {
+      button, a {
+        text-decoration: none;
         padding: 0.8rem 2rem;
         background: $primary-color;
         color: white;

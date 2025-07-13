@@ -27,6 +27,13 @@ const jobSchema = new mongoose.Schema({
   job_about: { type: String },
   job_description: { type: String, required:true },
   applicants: [applicationStatusSchema], // Array of applicants with their statuses
+  job_refer_link: {
+    type: String,
+    validate: {
+      validator: (v) => /^https?:\/\/.+/.test(v),
+      message: 'Invalid apply link URL.'
+    }
+  },
   job_status: { 
     type: String, 
     enum: ['pending', 'live', 'closed'],

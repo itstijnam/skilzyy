@@ -13,8 +13,10 @@ export const createJob = async (req, res) => {
             vacancy,
             compensation,
             job_type,
-            job_description
+            job_description,
+            job_refer_link
         } = req.body;
+
 
         // Validate required fields
         if (!company_name || !job_position || !date || !job_description || !vacancy) {
@@ -22,6 +24,9 @@ export const createJob = async (req, res) => {
                 error: "Required fields: company name, job position, last date, vacancy, and job description"
             });
         }
+
+        const urlPattern = /^https?:\/\/.+/;
+        if (!urlPattern.test(job_refer_link)) return res.status(400).json({ success: false, message: 'Invalid apply link URL' });
 
         const newJob = new Job({
             company_name,
@@ -33,6 +38,7 @@ export const createJob = async (req, res) => {
             job_type,
             job_about: about,
             job_description,
+            job_refer_link,
             created_by: req.id,
             job_status: 'pending'
         });
@@ -269,8 +275,8 @@ export const getApplicationByUsers = async (req, res) => {
         const jobs = await Job.find({
             "applicants.user": req.id
         })
-        .populate('created_by', 'person_name profilePicture username')
-        .sort({ createdAt: -1 });
+            .populate('created_by', 'person_name profilePicture username')
+            .sort({ createdAt: -1 });
 
         return res.status(200).json({
             success: true,

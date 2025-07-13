@@ -14,6 +14,7 @@ function CreateJob() {
         compensation: '',
         job_type: '',
         job_description: '',
+        job_refer_link: ''
     });
 
     const [compensationType, setCompensationType] = useState('');
@@ -79,6 +80,7 @@ function CreateJob() {
                     compensation: '',
                     job_type: '',
                     job_description: '',
+                    job_refer_link: ''
                 });
                 setCompensationType('');
                 setCustomAmount('');
@@ -247,6 +249,18 @@ function CreateJob() {
                                     <option value="Remote">Remote</option>
                                     <option value="Hybrid">Hybrid</option>
                                 </select>
+                            </div>
+
+                            <div className="form-field">
+                                <label>Company Job Link:</label>
+                                <input
+                                    type="text"
+                                    className='job_refer_link'
+                                    placeholder="Job Post Link"
+                                    name="job_refer_link"
+                                    value={form.job_refer_link}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                         <div className="job_action_btn">

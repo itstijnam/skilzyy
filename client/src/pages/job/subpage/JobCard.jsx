@@ -61,13 +61,27 @@ function JobCard() {
             <p className='job_card_vacancy'>Compensation: <span>{selectedJob?.compensation}</span></p>
             <p className='job_card_applied'>Applied: <span>{selectedJob?.applicants?.length}</span></p>
           </div>
+
+          
           <div className="job_action_btn">
-            {apiMessage && <small style={{color: true}} >{apiMessage}</small> }
-            {selectedJob?.applicants?.find(obj => obj.user === user?._id) ?
-              <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Applied</button> :
-              <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Apply</button>
-            }
+            {apiMessage && <small style={{ color: 'green' }}>{apiMessage}</small>}
+
+            {selectedJob?.job_refer_link ? (
+              <a
+                href={selectedJob.job_refer_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="visit-btn"
+              >
+                Visit
+              </a>
+            ) : (
+              selectedJob?.applicants?.find(obj => obj.user === user?._id) ?
+                <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Applied</button> :
+                <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Apply</button>
+            )}
           </div>
+
         </div>
         <div className="job_description">
           <h3>Job Description</h3>
