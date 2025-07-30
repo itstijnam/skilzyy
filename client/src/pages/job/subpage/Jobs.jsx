@@ -19,7 +19,7 @@ function Jobs() {
     useGetAllLiveJobs();
 
     const { allUsersLiveJobs } = useSelector(store => store.admin);
-    const {user} = useSelector(store => store.auth)
+    const { user } = useSelector(store => store.auth)
     const [apiMessage, setApiMessage] = useState('')
     const jobAppliedHandler = async (id) => {
         try {
@@ -35,13 +35,13 @@ function Jobs() {
         }
     }
 
- useEffect(() => {
-    const timeout = setTimeout(() => {
-      setApiMessage('');
-    }, 3000);
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setApiMessage('');
+        }, 3000);
 
-    return () => clearTimeout(timeout);
-  }, []);
+        return () => clearTimeout(timeout);
+    }, []);
 
     return (
         <div>
@@ -73,13 +73,22 @@ function Jobs() {
                                         {/* <p className='job_card_applied'>Applied: <span>{job?.applicants?.length}</span></p> */}
                                     </div>
                                 </div>
-                            </div>{apiMessage && <small style={{color: 'green'}} >{apiMessage}</small> }
+                            </div>{apiMessage && <small style={{ color: 'green' }} >{apiMessage}</small>}
                             <div className="job_card_apply_action">
-                                { job?.applicants?.find(obj => obj.user === user?._id) ?
-                                
-                                <button onClick={() => jobAppliedHandler(job?._id)} >Applied</button> :
-                                <button onClick={() => jobAppliedHandler(job?._id)} >Apply</button>
-                            }
+                                {job?.job_refer_link ? (
+                                    <a
+                                        href={job?.job_refer_link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="visit-btn"
+                                    >
+                                        Visit
+                                    </a>
+                                ) : (
+                                    job?.applicants?.find(obj => obj.user === user?._id) ?
+                                        <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Applied</button> :
+                                        <button onClick={() => jobAppliedHandler(selectedJob?._id)} >Apply</button>
+                                )}
                             </div>
                         </div>
                     ))}

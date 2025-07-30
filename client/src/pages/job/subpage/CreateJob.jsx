@@ -192,7 +192,6 @@ function CreateJob() {
                                     name="date"
                                     value={form.date}
                                     onChange={handleChange}
-                                    required
                                 />
                             </div>
 
@@ -200,7 +199,7 @@ function CreateJob() {
                                 <label>Vacancy:</label>
                                 <input
                                     type="number"
-                                    min="1"
+                                    min="0"
                                     placeholder="No. of openings"
                                     name="vacancy"
                                     value={form.vacancy}
@@ -221,6 +220,7 @@ function CreateJob() {
                                     <option value="5k-10k">5k-10k</option>
                                     <option value="10k-20k">10k-20k</option>
                                     <option value="20k-30k">20k-30k</option>
+                                    <option value="20k-30k">30k+</option>
                                     <option value="custom">Custom amount</option>
                                 </select>
                                 {compensationType === 'custom' && (

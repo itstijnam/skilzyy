@@ -9,7 +9,11 @@ function JobCard() {
   const { selectedJob } = useSelector(store => store.job);
   const { user } = useSelector(store => store.auth);
 
+
+
   const [apiMessage, setApiMessage] = useState('')
+  const [genNoti, setGenNoti] = useState(true);
+
   const jobAppliedHandler = async (id) => {
     try {
       const res = await axios.put(`${baseUrl}/api/job/apply/${id}`, { status: 'applied' }, {
@@ -27,6 +31,7 @@ function JobCard() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setApiMessage('');
+      setGenNoti(false)
     }, 3000);
 
     return () => clearTimeout(timeout);
@@ -55,6 +60,7 @@ function JobCard() {
       <div className="job_description_container">
         <div className="job_quickdetails">
           <div className="job_quick_right_top">
+
             <p>Experience: <span>{selectedJob?.experience_level} yr(s)</span></p>
             <p>Date: <span>{useFormatDate(selectedJob?.last_date)}</span></p>
             <p className='job_card_vacancy'>Vacancy: <span>{selectedJob?.vacancy}</span></p>
@@ -62,7 +68,8 @@ function JobCard() {
             <p className='job_card_applied'>Applied: <span>{selectedJob?.applicants?.length}</span></p>
           </div>
 
-          
+          {genNoti && <p style={{ color: 'red', transition: '0.2s' }}>0 means, company didnt provide details about that field.</p>}
+
           <div className="job_action_btn">
             {apiMessage && <small style={{ color: 'green' }}>{apiMessage}</small>}
 

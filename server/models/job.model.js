@@ -20,7 +20,7 @@ const jobSchema = new mongoose.Schema({
   post_name: { type: String, required: true },
   experience_level: { type: String }, 
   posted_date: { type: Date, default: Date.now },
-  last_date: { type: Date, required:true },
+  last_date: { type: Date },
   vacancy: { type: Number, required:true },
   compensation: { type: String },
   job_type: { type: String }, 

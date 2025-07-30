@@ -30,7 +30,7 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 const allowedOrigins = [process.env.FRONTEND_URL, "https://skilzyy.com"];
 
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
@@ -45,13 +45,13 @@ const corsOptions = {
 
 // Middleware
 app.use(cors(corsOptions));
-app.use(express.json()); 
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
 
-app.use('/api/freelance', userRouter); 
+app.use('/api/freelance', userRouter);
 app.use('/api/gig', gigRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);

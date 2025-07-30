@@ -124,8 +124,9 @@ $transition: all 0.3s ease;
   }
 
   .job_card_apply_action {
-    button {
+    button, a {
       padding: 0.6rem 1.5rem;
+      text-decoration: none;
       border: none;
       border-radius: $border-radius;
       background: $primary-color;
